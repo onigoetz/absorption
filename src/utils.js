@@ -1,4 +1,5 @@
 const path = require("path");
+const mm = require("micromatch");
 
 /**
  * @param chunkIterable An asynchronous or synchronous iterable
@@ -43,18 +44,21 @@ const thresholdMultipliers = {
   y: 365
 };
 
-function transformThreshold(threshold) {
+function getDuration(threshold) {
   const m = thresholdRegex.exec(threshold);
 
   if (!m) {
-    console.error(
-      `Invalid threshold '${threshold}' Valid values start with a number, followed by 'd' for days, 'w' for weeks, 'm' for months or 'y' for years`
+    throw new Error(
+      `Invalid threshold '${threshold}'. Valid values start with a number, followed by 'd' for days, 'w' for weeks, 'm' for months or 'y' for years`
     );
-    process.exit(1);
   }
 
+  return oneDay * parseInt(m[1], 10) * thresholdMultipliers[m[2]];
+}
+
+function transformThreshold(threshold) {
   const now = new Date().getTime();
-  return now - oneDay * parseInt(m[1], 10) * thresholdMultipliers[m[2]];
+  return now - getDuration(threshold);
 }
 
 function filePath(file) {
@@ -65,10 +69,24 @@ function loadFile(file) {
   return require(filePath(file));
 }
 
+function prepareWeights(weights) {
+  const methods = Object.entries(weights).map(([glob, weight]) => [
+    mm.matcher(glob),
+    weight
+  ]);
+
+  // Add a default method with a weight of 1
+  methods.push([() => true, 1]);
+
+  return file => methods.find(([fn]) => fn(file))[1];
+}
+
 module.exports = {
   chunksToLines,
   getBeginningOfMonth,
+  getDuration,
   transformThreshold,
   filePath,
-  loadFile
+  loadFile,
+  prepareWeights
 };

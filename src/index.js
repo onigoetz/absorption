@@ -1,14 +1,7 @@
-const execa = require("execa");
-
 const cacheInstance = require("./cache");
-
-const { chunksToLines } = require("./utils");
-const getBlame = require("./blame");
+const { prepareWeights } = require("./utils");
+const { getBlame, listFiles } = require("./git");
 const Queue = require("./queue");
-
-function getFiles(cwd) {
-  return execa("git", ["ls-tree", "-r", "master"], { cwd });
-}
 
 function appendBlame(data, moreData) {
   Object.keys(moreData).forEach(dateKey => {
@@ -26,35 +19,6 @@ function appendBlame(data, moreData) {
       data[dateKey][authorKey] += moreData[dateKey][authorKey];
     });
   });
-}
-
-async function computeFiles(cache, repository, verbose) {
-  const running = getFiles(repository);
-
-  const queue = new Queue(verbose);
-  const data = {};
-  for await (const line of chunksToLines(running.stdout)) {
-    const separated = line.split(/\t/);
-    const filename = separated[1].slice(0, -1);
-    const hash = separated[0].slice(-40);
-    const cacheKey = `${repository}:${hash}:${filename}:v2`;
-
-    queue.add({
-      name: filename,
-      fn: async () => {
-        const newData = await cache.wrap(cacheKey, () =>
-          getBlame(repository, filename)
-        );
-
-        appendBlame(data, newData);
-      }
-    });
-  }
-
-  await running;
-  await queue.processedAll();
-
-  return data;
 }
 
 function computeAbsorption(threshold, contributors, data, verbose) {
@@ -116,12 +80,142 @@ function computeAbsorption(threshold, contributors, data, verbose) {
   return { active, passive, lost };
 }
 
+function toPercentage(current, total) {
+  return (current * 100) / total;
+}
+
+function sortByKnowledge(elements) {
+  elements.sort((a, b) => {
+    if (a.lines < b.lines) {
+      return 1;
+    } else if (a.lines > b.lines) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+
+  return elements;
+}
+
+function combineActiveAndPassive(active, passive) {
+  const combined = {};
+  Object.keys(active).forEach(who => {
+    if (who === "total") {
+      return;
+    }
+    combined[who] = {
+      name: who,
+      lines: active[who],
+      activeLines: active[who],
+      passiveLines: 0
+    };
+  });
+
+  Object.keys(passive).forEach(who => {
+    if (who === "total") {
+      return;
+    }
+    if (!combined.hasOwnProperty(who)) {
+      combined[who] = {
+        name: who,
+        lines: 0,
+        activeLines: 0,
+        passiveLines: 0
+      };
+    }
+    combined[who].lines += passive[who];
+    combined[who].passiveLines = passive[who];
+  });
+
+  return combined;
+}
+
+function rebalance(newData, weight) {
+  const final = {};
+  Object.keys(newData).forEach(timestamp => {
+    final[timestamp] = {};
+
+    Object.keys(newData[timestamp]).forEach(who => {
+      final[timestamp][who] = newData[timestamp][who] * weight;
+    });
+  });
+
+  return final;
+}
+
 module.exports = async function main(
   contributors,
+  weights,
   threshold,
   repository,
   verbose
 ) {
-  const data = await computeFiles(cacheInstance, repository, verbose);
-  return computeAbsorption(threshold, contributors, data, verbose);
+  const getWeight = prepareWeights(weights);
+
+  const queue = new Queue(verbose);
+  const data = {};
+
+  await listFiles(repository, (filename, hash) => {
+    const weight = getWeight(filename);
+
+    if (weight === 0) {
+      console.log("Ignoring file", filename);
+      return;
+    }
+
+    const cacheKey = `${repository}:${hash}:${filename}:v2`;
+    queue.add({
+      name: filename,
+      fn: async () => {
+        const newData = await cacheInstance.wrap(cacheKey, () =>
+          getBlame(repository, filename)
+        );
+
+        const balanced = rebalance(newData, weight);
+
+        appendBlame(data, balanced);
+      }
+    });
+  });
+
+  await queue.await();
+
+  const { active, passive, lost } = computeAbsorption(
+    threshold,
+    contributors,
+    data,
+    verbose
+  );
+
+  const totalLines = active.total + passive.total + lost.total;
+  const activePercentage = Math.round(toPercentage(active.total, totalLines));
+  const passivePercentage = Math.round(toPercentage(passive.total, totalLines));
+  const lostPercentage = Math.round(toPercentage(lost.total, totalLines));
+
+  const combined = combineActiveAndPassive(active, passive);
+
+  const activeKnowledge = sortByKnowledge(Object.values(combined));
+
+  return {
+    total: totalLines,
+    categories: {
+      active,
+      passive,
+      lost
+    },
+    absorption: {
+      active: activePercentage,
+      passive: passivePercentage,
+      lost: lostPercentage
+    },
+    knowledge: {
+      active: activeKnowledge,
+      lost: sortByKnowledge(
+        Object.entries(lost)
+          .filter(entry => entry[0] !== "total")
+          .map(([name, lines]) => ({ name, lines }))
+      )
+    }
+  };
 };

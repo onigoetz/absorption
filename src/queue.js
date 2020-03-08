@@ -108,7 +108,7 @@ module.exports = class Queue {
     this.run(item);
   }
 
-  processedAll() {
+  await() {
     // We're already done with the items on the queue
     if (this.inFlight.length === 0 && this.queue.length === 0) {
       return Promise.resolve();

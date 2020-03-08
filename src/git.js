@@ -8,7 +8,7 @@ function runBlame(cwd, file) {
   return execa("git", ["blame", "--incremental", file, "master"], { cwd });
 }
 
-module.exports = async function getBlame(cwd, file) {
+async function getBlame(cwd, file) {
   const running = runBlame(cwd, file);
 
   const hashes = {};
@@ -60,4 +60,27 @@ module.exports = async function getBlame(cwd, file) {
   await running;
 
   return mapped;
+}
+
+function getFiles(cwd) {
+  return execa("git", ["ls-tree", "-r", "master"], { cwd });
+}
+
+async function listFiles(repository, onFile) {
+  const running = getFiles(repository);
+
+  for await (const line of chunksToLines(running.stdout)) {
+    const separated = line.split(/\t/);
+    const filename = separated[1].slice(0, -1);
+    const hash = separated[0].slice(-40);
+
+    onFile(filename, hash);
+  }
+
+  await running;
+}
+
+module.exports = {
+  getBlame,
+  listFiles
 };

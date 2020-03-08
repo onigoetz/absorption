@@ -1,6 +1,6 @@
 {
   "name": "absorption",
-  "version": "0.9.0",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "./src/index.js",
   "bin": {
@@ -16,13 +16,18 @@
     "execa": "^4.0.0",
     "find-cache-dir": "^3.3.0",
     "loud-rejection": "^2.2.0",
+    "micromatch": "^4.0.2",
     "yargs": "^15.1.0"
   },
   "devDependencies": {
     "@swissquote/eslint-plugin-swissquote": "1.10.0",
-    "eslint": "6.8.0"
+    "eslint": "6.8.0",
+    "jest": "^25.1.0"
   },
   "scripts": {
-    "lint": "eslint src --fix"
+    "lint": "eslint src --fix",
+    "test": "jest --coverage --collectCoverageFrom=src/*",
+    "prepublish": "yarn test",
+    "postpublish": "git push && git push --tags"
   }
 }

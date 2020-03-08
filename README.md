@@ -16,6 +16,7 @@ The approach we take is for each file in a repository, gather how many lines wer
 Then by using a thresold date (1 year by default) we sort the elements in two buckets : commits made before the thresold and commits made after.
 
 This allows us to go in the last step of the process, sorting all those commits in three categories :
+
 - Active : Code that was modified recently (after the thresold)
 - Passive : Code that was modified before the threshold but by an active contributor
 - Lost : Code that was modified by somebody no longer active on the repository
@@ -36,15 +37,36 @@ You can then use the options of the command to fine tune the results.
 - `--json file.json` Output the raw data to a json file.
 - `--contributors contributors.json` Feed data on contributors, see below for that file's format.
 
-### `--contributors`
+A more advanced example :
+
+```
+absorption /Users/onigoetz/Sites/Libs/crafty --weights weights.json --contributors contributors.json
+Scanning ████████████████████████████████████████ | 100% | 523/523
+
+The repository's absorption score is 11% active, 89% passive and 0% lost
+
+Active/Passive members
+----------------------
+ - Stéphane Goetz  99.85 % (11.35% active, 88.50% passive)
+ - Vitalii Shapovalov  0.10 % (0.10% active, 0.00% passive)
+Lost
+----
+ - Illia Shestakov <ilyuhazp@gmail.com>  0.03 %
+ - Marie P-W <marie.wermuth@gmail.com>  0.01 %
+ - Jonas Renaudot  0.01 %
+ - mindhalt <mindhalt@gmail.com>  0.00 %
+```
+
+### `--contributors contributors.json`
 
 ```json
 [
   {
-    "type": "person",           // "person" or "bot", bots will be excluded from the output
-    "name": "Stéphane Goetz",   // This name will be used for display
-    "active": true,             // (Optional) can force somebody to active or inactive.
-    "identities": [             // Identities can be one or more elements
+    "type": "person", // "person" or "bot", bots will be excluded from the output
+    "name": "Stéphane Goetz", // This name will be used for display
+    "active": true, // (Optional) can force somebody to active or inactive.
+    "identities": [
+      // Identities can be one or more elements
       "Stéphane Goetz <onigoetz@onigoetz.ch>",
       "Stéphane Goetz <stephane.goetz@swissquote.ch>",
       "Stéphane Goetz <stephane.goetz@onigoetz.ch>"
@@ -58,7 +80,21 @@ You can then use the options of the command to fine tune the results.
 ]
 ```
 
-## How fast is it ?
+### `--weights weights.json`
+
+The weight that is given to each file can be fine tuned, for example you might want to give a higher ranking to some critical business code in an application. Or give only half the weight to tests.
+
+A weight of `0` for a file will skip its processing entirely.
+
+```
+{
+  "**/__tests__/*": 0.5,
+  "src/business/**": 2,
+  "**/*.js": 1.5
+}
+```
+
+## How fast is it ?
 
 We have to run a `git blame` on every file on a repository, on small to medium repositories it takes a few seconds to one minute, on big repositories this can take a few minutes. (I ran it on github.com/babel/babel, with 18'000 files it took a little over 6 minutes on my Mac Mini)
 

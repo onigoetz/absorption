@@ -1,0 +1,63 @@
+const execa = require("execa");
+const { chunksToLines, getBeginningOfMonth } = require("./utils");
+
+const hashRegex = /^([0-9a-f]{40})\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)/;
+const authorRegex = /author(?:-(mail|time|tz))? (.*)/;
+
+function runBlame(cwd, file) {
+  return execa("git", ["blame", "--incremental", file, "master"], { cwd });
+}
+
+module.exports = async function getBlame(cwd, file) {
+  const running = runBlame(cwd, file);
+
+  const hashes = {};
+  let currentHash;
+  for await (const line of chunksToLines(running.stdout)) {
+    const m = hashRegex.exec(line);
+    if (m) {
+      currentHash = m[1];
+      const numLines = parseInt(m[4], 10);
+
+      if (!hashes.hasOwnProperty(currentHash)) {
+        hashes[currentHash] = {
+          numLines: 0,
+          author: "",
+          mail: "",
+          time: "",
+          tz: ""
+        };
+      }
+
+      hashes[currentHash].numLines += numLines;
+    } else {
+      const author = authorRegex.exec(line);
+      if (author) {
+        hashes[currentHash][author[1] || "author"] = author[2];
+      }
+
+      // We don't care about the other lines
+    }
+  }
+
+  const mapped = Object.values(hashes).reduce((acc, current) => {
+    const date = getBeginningOfMonth(current.time * 1000);
+    const dateKey = `${date.getTime()}`;
+    if (!acc.hasOwnProperty(dateKey)) {
+      acc[dateKey] = {};
+    }
+
+    const authorKey = `${current.author} ${current.mail}`;
+    if (!acc[dateKey].hasOwnProperty(authorKey)) {
+      acc[dateKey][authorKey] = 0;
+    }
+
+    acc[dateKey][authorKey] += current.numLines;
+
+    return acc;
+  }, {});
+
+  await running;
+
+  return mapped;
+};

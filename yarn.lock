@@ -89,7 +89,7 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@swissquote/eslint-plugin-swissquote@^1.10.0":
+"@swissquote/eslint-plugin-swissquote@1.10.0":
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/@swissquote/eslint-plugin-swissquote/-/eslint-plugin-swissquote-1.10.0.tgz#ebf3b1e0038b3f2cd2ced2a9afd7974aecb39ef2"
   integrity sha512-qwGRaRjWr6p1QhknGhTKCsC+BYGqA6pJYItYQHjecTHgPQ2RWypLar8cnO2BChyuh0TKNr2GWCvdY4QcDzpxIA==
@@ -632,7 +632,7 @@ eslint-visitor-keys@^1.0.0, eslint-visitor-keys@^1.1.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-1.1.0.tgz#e2a82cea84ff246ad6fb57f9bde5b46621459ec2"
   integrity sha512-8y9YjtM1JBJU/A9Kc+SbaOV4y29sSWckBwMHa+FGtVj5gN/sbnKDf6xJUl+8g7FAij9LVaP8C24DUiH/f/2Z9A==
 
-eslint@^6.8.0:
+eslint@6.8.0:
   version "6.8.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-6.8.0.tgz#62262d6729739f9275723824302fb227c8c93ffb"
   integrity sha512-K+Iayyo2LtyYhDSYwz5D5QdWw0hCacNzyq1Y821Xna2xSJj7cijoLLYmLxTQgcgZ9mC61nryMy9S7GRbYpI5Ig==

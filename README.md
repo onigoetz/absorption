@@ -1,5 +1,7 @@
 # Absorption
 
+![Node.js CI](https://github.com/onigoetz/absorption/workflows/Node.js%20CI/badge.svg)
+
 ## What is absorption ?
 
 Absorption is a small tool that gives you a knowledge absorption score for a git repository.

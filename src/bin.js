@@ -28,9 +28,11 @@ yargs
       });
     },
     async argv => {
-      const weights = argv.weights ? loadFile(argv.weights) : {};
       const repository = argv.repository;
-      const getWeight = prepareWeights(weights);
+      const weights = argv.weights ? loadFile(argv.weights) : {};
+      const withMedia = argv.withMedia;
+
+      const getWeight = prepareWeights(weights, withMedia);
 
       await listFiles(repository, (filename, hash) => {
         console.log(` ${filename} ${getWeight(filename)}`);
@@ -48,13 +50,14 @@ yargs
     },
     async argv => {
       const contributors = argv.contributors ? loadFile(argv.contributors) : [];
-      const weights = argv.weights ? loadFile(argv.weights) : {};
-      const threshold = transformThreshold(argv.threshold);
       const repository = argv.repository;
+      const threshold = transformThreshold(argv.threshold);
+      const weights = argv.weights ? loadFile(argv.weights) : {};
+      const withMedia = argv.withMedia;
 
       const result = await calculate(
         contributors,
-        weights,
+        prepareWeights(weights, withMedia),
         threshold,
         repository,
         argv.verbose
@@ -113,6 +116,11 @@ yargs
   .option("weights", {
     describe: "Change the weight of each file, through a JSON file",
     type: "string"
+  })
+  .option("with-media", {
+    describe: "Media files are ignored by default, this restores them",
+    type: "boolean",
+    default: false
   })
   .option("verbose", {
     type: "boolean",

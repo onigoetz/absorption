@@ -1,5 +1,4 @@
 const cacheInstance = require("./cache");
-const { prepareWeights } = require("./utils");
 const { getBlame, listFiles } = require("./git");
 const Queue = require("./queue");
 
@@ -146,13 +145,11 @@ function rebalance(newData, weight) {
 
 module.exports = async function main(
   contributors,
-  weights,
+  getWeight,
   threshold,
   repository,
   verbose
 ) {
-  const getWeight = prepareWeights(weights);
-
   const queue = new Queue(verbose);
   const data = {};
   const fileData = {};

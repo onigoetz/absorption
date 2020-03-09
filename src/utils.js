@@ -69,7 +69,24 @@ function loadFile(file) {
   return require(filePath(file));
 }
 
-function prepareWeights(weights) {
+const mediaPatterns = [
+  // Images
+  "**/*.{jpg,jpeg,tiff,gif,bmp,png,webp,heif,ico}",
+  // Audio
+  "**/*.{3gp,aa,aac,aax,act,aiff,alac,amr,ape,au,awb,dct,dss,dvf,flac,gsm,iklax,ivs,m4a,m4b,mmf,mp3,mpc,msv,nmf,nsf,ogg,oga,mogg,opus,ra,rm,raw,rf64,sln,tta,voc,vox,wav,wma,wv,8svx,cda}",
+  // Video
+  "**/*.{webm,mkv,flv,vob,ogv,drc,gifv,mng,avi,mov,qt,wmv,yuv,rmvb,asf,amv,mp4,m4p,m4v,mpg,mp2,mpeg,mpv,m2v,m4v,svi,3g2,mxf,roq,nsv,aa}"
+];
+
+function prepareWeights(weights, withMedia) {
+  if (!withMedia) {
+    for (const pattern of mediaPatterns) {
+      if (!weights.hasOwnProperty(pattern)) {
+        weights[pattern] = 0;
+      }
+    }
+  }
+
   const methods = Object.entries(weights).map(([glob, weight]) => [
     mm.matcher(glob),
     weight

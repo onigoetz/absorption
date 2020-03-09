@@ -155,6 +155,7 @@ module.exports = async function main(
 
   const queue = new Queue(verbose);
   const data = {};
+  const fileData = {};
 
   await listFiles(repository, (filename, hash) => {
     const weight = getWeight(filename);
@@ -171,6 +172,10 @@ module.exports = async function main(
         const newData = await cacheInstance.wrap(cacheKey, () =>
           getBlame(repository, filename)
         );
+
+        if (verbose) {
+          fileData[filename] = newData;
+        }
 
         const balanced = rebalance(newData, weight);
 
@@ -197,7 +202,7 @@ module.exports = async function main(
 
   const activeKnowledge = sortByKnowledge(Object.values(combined));
 
-  return {
+  const computed = {
     total: totalLines,
     categories: {
       active,
@@ -218,4 +223,10 @@ module.exports = async function main(
       )
     }
   };
+
+  if (verbose) {
+    computed.fileData = fileData;
+  }
+
+  return computed;
 };

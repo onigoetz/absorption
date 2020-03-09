@@ -34,8 +34,9 @@ Will give you useful information already.
 You can then use the options of the command to fine tune the results.
 
 - `--threshold 6m` After what delay do you consider the knowledge lost. starts with a number, followed by 'd' for days, 'w' for weeks, 'm' for months or 'y' for years (1y, 6m, 9w). Defaults to one year.
-- `--json file.json` Output the raw data to a json file.
 - `--contributors contributors.json` Feed data on contributors, see below for that file's format.
+- `--verbose` Output lots of debug information
+- `--json file.json` Output the raw data to a json file. (used in conjunction with `--verbose` will output raw data per file as well)
 
 A more advanced example :
 

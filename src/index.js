@@ -20,15 +20,39 @@ function appendBlame(data, moreData) {
   });
 }
 
+function getLevelBefore(contributorByName, active, who) {
+  // Find if there was an override
+  if (
+    contributorByName.hasOwnProperty(who) &&
+    contributorByName[who].hasOwnProperty("active")
+  ) {
+    return contributorByName[who].active ? "passive" : "lost";
+  }
+
+  return active.hasOwnProperty(who) ? "passive" : "lost";
+}
+
+function getLevelAfter(contributorByName, who) {
+  // Find if there was an override
+  if (
+    contributorByName.hasOwnProperty(who) &&
+    contributorByName[who].hasOwnProperty("active")
+  ) {
+    return contributorByName[who].active ? "active" : "lost";
+  }
+
+  return "active";
+}
+
 function computeAbsorption(threshold, contributors, data, verbose) {
   // First we categorize in before / after the threshold
   const before = {};
   const after = {};
 
-  /*const contributorByName = contributors.reduce((acc, curr) => {
+  const contributorByName = contributors.reduce((acc, curr) => {
     acc[curr.name] = curr;
     return acc;
-  }, {});*/
+  }, {});
 
   Object.keys(data).forEach(key => {
     const storeInto = parseInt(key, 10) < threshold ? before : after;
@@ -58,25 +82,35 @@ function computeAbsorption(threshold, contributors, data, verbose) {
   // Active is the amount of lines written in the last year by people still active
   // Passive is the amount of lines written before last year by people still active
   // Lost is the amount of lines written before last year by people inactive
-  const active = { total: 0 };
-  const passive = { total: 0 };
-  const lost = { total: 0 };
+  const levels = {
+    active: { total: 0 },
+    passive: { total: 0 },
+    lost: { total: 0 }
+  };
 
-  // As-is, the afters are all considered active
-  // TODO :: allow to pass more nuanced data on active contributors
-  // For example, the user commited in the last year but left the company since
+  // Code that was contributed more recently than the threshold is considered active
+  // Except if the contributor has been explicitly set as "active: false"
+  // In that case, it's considered lost
   Object.keys(after).forEach(who => {
-    active[who] = after[who];
-    active.total += after[who];
+    const level = getLevelAfter(contributorByName, who);
+    levels[level][who] = after[who];
+    levels[level].total += after[who];
   });
 
+  // Code that was contributed before the thresold is considered lost
+  // If it was contributed by an active commiter, it is considered passive
+  // If it was contributed by a member explicitly set as "active: true"
+  // it will be set as passive even if the contributor didn't contribute more recently.
   Object.keys(before).forEach(who => {
-    const storeInto = active.hasOwnProperty(who) ? passive : lost;
-    storeInto[who] = before[who];
-    storeInto.total += before[who];
+    const level = getLevelBefore(contributorByName, levels.active, who);
+    if (!levels[level].hasOwnProperty(who)) {
+      levels[level][who] = 0;
+    }
+    levels[level][who] += before[who];
+    levels[level].total += before[who];
   });
 
-  return { active, passive, lost };
+  return levels;
 }
 
 function toPercentage(current, total) {

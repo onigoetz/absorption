@@ -53,7 +53,6 @@ module.exports = class Queue {
   }
 
   add(item) {
-    this.debug("Adding item to queue");
     this.total++;
 
     if (this.running) {

@@ -161,7 +161,10 @@ module.exports = async function main(
     const weight = getWeight(filename);
 
     if (weight === 0) {
-      console.log("Ignoring file", filename);
+      if (verbose) {
+        console.log("Ignoring file", filename);
+      }
+
       return;
     }
 
@@ -215,7 +218,7 @@ module.exports = async function main(
       lost: lostPercentage
     },
     knowledge: {
-      active: activeKnowledge,
+      active: sortByKnowledge(activeKnowledge),
       lost: sortByKnowledge(
         Object.entries(lost)
           .filter(entry => entry[0] !== "total")

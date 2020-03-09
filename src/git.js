@@ -4,6 +4,12 @@ const { chunksToLines, getBeginningOfMonth } = require("./utils");
 const hashRegex = /^([0-9a-f]{40})\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)/;
 const authorRegex = /author(?:-(mail|time|tz))? (.*)/;
 
+async function getRemoteOrigin(cwd) {
+  const result = await execa("git", ["remote", "get-url", "origin"], { cwd });
+
+  return result.stdout;
+}
+
 function runBlame(cwd, file) {
   return execa("git", ["blame", "--incremental", file, "master"], { cwd });
 }
@@ -82,5 +88,6 @@ async function listFiles(repository, onFile) {
 
 module.exports = {
   getBlame,
-  listFiles
+  listFiles,
+  getRemoteOrigin
 };

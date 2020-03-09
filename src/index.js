@@ -1,5 +1,5 @@
 const cacheInstance = require("./cache");
-const { getBlame, listFiles } = require("./git");
+const { getBlame, listFiles, getRemoteOrigin } = require("./git");
 const Queue = require("./queue");
 
 function appendBlame(data, moreData) {
@@ -188,6 +188,17 @@ module.exports = async function main(
   const data = {};
   const fileData = {};
 
+  let repositoryCacheKey = repository;
+  try {
+    // Get the origin url as cache key, allows for better caching, instead of relying on absolute or relative paths
+    repositoryCacheKey = await getRemoteOrigin(repository);
+  } catch (e) {
+    if (verbose) {
+      // It's not that important if this fails, we can ignore it, unless we're in verbose mode
+      console.error(e.message || e.shortMessage || e.stderr);
+    }
+  }
+
   await listFiles(repository, (filename, hash) => {
     const weight = getWeight(filename);
 
@@ -199,7 +210,7 @@ module.exports = async function main(
       return;
     }
 
-    const cacheKey = `${repository}:${hash}:${filename}:v2`;
+    const cacheKey = `${repositoryCacheKey}:${hash}:${filename}:v2`;
     queue.add({
       name: filename,
       fn: async () => {

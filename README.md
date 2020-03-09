@@ -24,6 +24,12 @@ This allows us to go in the last step of the process, sorting all those commits 
 This, in turn will give you a bus factor : How many people need to stop commiting on a project for it to be in danger.
 By default
 
+## Installation
+
+```bash
+npm install -g absorption
+```
+
 ## How to use it
 
 ```bash
@@ -39,24 +45,25 @@ You can then use the options of the command to fine tune the results.
 - `--verbose` Output lots of debug information
 - `--json file.json` Output the raw data to a json file. (used in conjunction with `--verbose` will output raw data per file as well)
 
+
 A more advanced example :
 
 ```
 absorption /Users/onigoetz/Sites/Libs/crafty --weights weights.json --contributors contributors.json
-Scanning ████████████████████████████████████████ | 100% | 523/523
+Scanning ████████████████████████████████████████ | 100% | 520/520
 
-The repository's absorption score is 11% active, 89% passive and 0% lost
+The repository's absorption score is 39% active, 61% passive and 0% lost
 
 Active/Passive members
 ----------------------
- - Stéphane Goetz  99.85 % (11.35% active, 88.50% passive)
- - Vitalii Shapovalov  0.10 % (0.10% active, 0.00% passive)
+ - Stéphane Goetz  99.62 % (38.81% active, 60.81% passive)
+ - Vitalii Shapovalov  0.20 % (0.20% active, 0.00% passive)
 Lost
 ----
- - Illia Shestakov <ilyuhazp@gmail.com>  0.03 %
- - Marie P-W <marie.wermuth@gmail.com>  0.01 %
- - Jonas Renaudot  0.01 %
- - mindhalt <mindhalt@gmail.com>  0.00 %
+ - Illia Shestakov <ilyuhazp@gmail.com>  0.10 %
+ - Marie P-W <marie.wermuth@gmail.com>  0.04 %
+ - Jonas Renaudot  0.03 %
+ - mindhalt <mindhalt@gmail.com>  0.01 %
 ```
 
 ### `--contributors contributors.json`
@@ -64,11 +71,10 @@ Lost
 ```json
 [
   {
-    "type": "person", // "person" or "bot", bots will be excluded from the output
-    "name": "Stéphane Goetz", // This name will be used for display
-    "active": true, // (Optional) can force somebody to active or inactive.
+    "type": "person",
+    "name": "Stéphane Goetz",
+    "active": true,
     "identities": [
-      // Identities can be one or more elements
       "Stéphane Goetz <onigoetz@onigoetz.ch>",
       "Stéphane Goetz <stephane.goetz@swissquote.ch>",
       "Stéphane Goetz <stephane.goetz@onigoetz.ch>"
@@ -82,13 +88,20 @@ Lost
 ]
 ```
 
+The fields:
+
+- `type`: "person" or "bot", bots will be excluded from the output.
+- `name`: This name will be used for display.
+- `active`: (Optional) can force somebody to active or inactive.
+- `identities`: The list of elements to match the contributors to.
+
 ### `--weights weights.json`
 
 The weight that is given to each file can be fine tuned, for example you might want to give a higher ranking to some critical business code in an application. Or give only half the weight to tests.
 
 A weight of `0` for a file will skip its processing entirely.
 
-```
+```json
 {
   "**/__tests__/*": 0.5,
   "src/business/**": 2,

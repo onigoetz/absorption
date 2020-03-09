@@ -2,6 +2,12 @@
   "name": "absorption",
   "version": "0.1.0",
   "license": "MIT",
+  "repository": "https://github.com/onigoetz/absorption",
+  "keywords": [
+    "git",
+    "code-analysis",
+    "metrics"
+  ],
   "main": "./src/index.js",
   "bin": {
     "absorption": "./src/bin.js"
@@ -27,7 +33,7 @@
   "scripts": {
     "lint": "eslint src --fix",
     "test": "jest --coverage --collectCoverageFrom=src/*",
-    "prepublish": "yarn test",
+    "prepublishOnly": "yarn test",
     "postpublish": "git push && git push --tags"
   }
 }

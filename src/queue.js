@@ -27,7 +27,7 @@ module.exports = class Queue {
           increment() {}
         }
       : new cliProgress.SingleBar({
-          format: "Scanning {bar} | {percentage}% | {value}/{total}",
+          format: "Scanning {bar} | {percentage}% | {value}/{total} files",
           barCompleteChar: "\u2588",
           barIncompleteChar: "\u2591"
         });

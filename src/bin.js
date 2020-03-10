@@ -2,6 +2,8 @@
 const fs = require("fs");
 const yargs = require("yargs");
 const loudRejection = require("loud-rejection");
+const { bold } = require("kleur");
+const table = require("tty-table");
 
 const {
   transformThreshold,
@@ -15,6 +17,52 @@ const calculate = require("./index.js");
 loudRejection();
 
 process.title = "absorption";
+
+function renderFresh(result) {
+  function toPct(lines) {
+    return `${((lines * 100) / result.total).toFixed(2)} %`;
+  }
+
+  const header = [
+    {
+      value: "name",
+      alias: "Name",
+      align: "left",
+      headerAlign: "left"
+    },
+    {
+      value: "lines",
+      alias: "Total",
+      align: "right",
+      width: 10,
+      formatter: toPct
+    },
+    {
+      value: "freshLines",
+      alias: "Fresh",
+      align: "right",
+      width: 10,
+      formatter: toPct
+    },
+    {
+      value: "fadingLines",
+      alias: "Fading",
+      align: "right",
+      width: 10,
+      formatter: toPct
+    }
+  ];
+
+  const options = {
+    borderStyle: "solid",
+    borderColor: "gray",
+    headerAlign: "right"
+  };
+
+  console.log(
+    table(header, result.knowledge.fresh.slice(0, 10), null, options).render()
+  );
+}
 
 yargs
   //.usage("Usage: $0 <command> [options]")
@@ -76,27 +124,27 @@ yargs
       );
       console.log("");
 
-      console.log("Fresh/Fading knowledge");
-      console.log("----------------------");
-      result.knowledge.fresh
-        .slice(0, 10)
-        .forEach(({ name, lines, freshLines, fadingLines }) => {
-          const percentage = (lines * 100) / result.total;
-          const fresh = (freshLines * 100) / result.total;
-          const fading = (fadingLines * 100) / result.total;
-          console.log(
-            ` - ${name}  ${percentage.toFixed(2)} % (${fresh.toFixed(
-              2
-            )}% fresh, ${fading.toFixed(2)}% fading)`
-          );
-        });
+      console.log(bold("Fresh/Fading knowledge"));
 
-      console.log("Lost");
-      console.log("----");
-      result.knowledge.lost.slice(0, 10).forEach(({ name, lines }) => {
-        const percentage = (lines * 100) / result.total;
-        console.log(` - ${name}  ${percentage.toFixed(2)} %`);
-      });
+      if (result.knowledge.fresh.length) {
+        renderFresh(result);
+      } else {
+        console.log("It seems this repository has no fresh knowledge.");
+      }
+
+      console.log();
+      console.log(bold("Lost"));
+
+      if (result.knowledge.lost.length) {
+        result.knowledge.lost.slice(0, 10).forEach(({ name, lines }) => {
+          const percentage = (lines * 100) / result.total;
+          console.log(` - ${name}  ${percentage.toFixed(2)} %`);
+        });
+      } else {
+        console.log(
+          "It seems this repository has no lost knowledge, congratulations !"
+        );
+      }
     }
   )
   .option("json", {

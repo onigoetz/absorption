@@ -19,10 +19,12 @@
     "cache-manager": "^3.1.0",
     "cache-manager-fs-hash": "^0.0.7",
     "cli-progress": "^3.6.0",
+    "colors": "^1.4.0",
     "execa": "^4.0.0",
     "find-cache-dir": "^3.3.0",
-    "loud-rejection": "^2.2.0",
+    "hard-rejection": "^2.1.0",
     "micromatch": "^4.0.2",
+    "tty-table": "^4.0.0",
     "yargs": "^15.1.0"
   },
   "devDependencies": {

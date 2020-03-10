@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const fs = require("fs");
 const yargs = require("yargs");
-const loudRejection = require("loud-rejection");
-const { bold } = require("kleur");
+const hardRejection = require("hard-rejection");
+const colors = require("colors/safe");
 const table = require("tty-table");
 
 const {
@@ -14,7 +14,7 @@ const {
 const { listFiles } = require("./git.js");
 const calculate = require("./index.js");
 
-loudRejection();
+hardRejection();
 
 process.title = "absorption";
 
@@ -64,17 +64,19 @@ function renderFresh(result) {
   );
 }
 
+function commandRepositoryConfig(config) {
+  config.positional("repository", {
+    describe: "The repository to scan",
+    type: "string"
+  });
+}
+
 yargs
   //.usage("Usage: $0 <command> [options]")
   .command(
     "list-files <repository>",
     "List all files and their weights",
-    config => {
-      config.positional("repository", {
-        describe: "The repository to scan",
-        type: "string"
-      });
-    },
+    commandRepositoryConfig,
     async argv => {
       const repository = argv.repository;
       const weights = argv.weights ? loadFile(argv.weights) : {};
@@ -90,12 +92,7 @@ yargs
   .command(
     ["calculate <repository>", "$0 <repository>"],
     "Calculate absorption",
-    config => {
-      config.positional("repository", {
-        describe: "The repository to scan",
-        type: "string"
-      });
-    },
+    commandRepositoryConfig,
     async argv => {
       const contributors = argv.contributors ? loadFile(argv.contributors) : [];
       const repository = argv.repository;
@@ -118,14 +115,13 @@ yargs
         return;
       }
 
-      console.log("");
+      console.log();
       console.log(
         `The repository's absorption score is ${result.absorption.fresh}% fresh, ${result.absorption.fading}% fading and ${result.absorption.lost}% lost`
       );
-      console.log("");
+      console.log();
 
-      console.log(bold("Fresh/Fading knowledge"));
-
+      console.log(colors.bold("Fresh/Fading knowledge"));
       if (result.knowledge.fresh.length) {
         renderFresh(result);
       } else {
@@ -133,8 +129,7 @@ yargs
       }
 
       console.log();
-      console.log(bold("Lost"));
-
+      console.log(colors.bold("Lost"));
       if (result.knowledge.lost.length) {
         result.knowledge.lost.slice(0, 10).forEach(({ name, lines }) => {
           const percentage = (lines * 100) / result.total;

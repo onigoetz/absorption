@@ -53,20 +53,25 @@ A more advanced example :
 
 ```
 absorption /Users/onigoetz/Sites/Libs/crafty --weights weights.json --contributors contributors.json
-Scanning ████████████████████████████████████████ | 100% | 520/520
+Scanning ████████████████████████████████████████ | 100% | 492/492 files
 
-The repository's absorption score is 39% fresh, 61% fading and 0% lost
+The repository's absorption score is 16% fresh, 84% fading and 0% lost
 
 Fresh/Fading knowledge
-----------------------
- - Stéphane Goetz  99.62 % (38.81% fresh, 60.81% fading)
- - Vitalii Shapovalov  0.20 % (0.20% fresh, 0.00% fading)
+
+  ┌────────────────────┬──────────┬──────────┬──────────┐
+  │ Name               │    Total │    Fresh │   Fading │
+  ├────────────────────┼──────────┼──────────┼──────────┤
+  │ Stéphane Goetz     │  99.51 % │  15.67 % │  83.83 % │
+  ├────────────────────┼──────────┼──────────┼──────────┤
+  │ Vitalii Shapovalov │   0.14 % │   0.14 % │   0.00 % │
+  └────────────────────┴──────────┴──────────┴──────────┘
+
 Lost
-----
- - Illia Shestakov  0.10 %
- - Marie P-W <marie.wermuth@gmail.com>  0.04 %
- - Jonas Renaudot  0.03 %
- - mindhalt <mindhalt@gmail.com>  0.01 %
+ - Illia Shestakov  0.19 %
+ - Marie P-W <marie.wermuth@gmail.com>  0.08 %
+ - Jonas Renaudot  0.05 %
+ - mindhalt <mindhalt@gmail.com>  0.03 %
 ```
 
 ### `--contributors contributors.json`

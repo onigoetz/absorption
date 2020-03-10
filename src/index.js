@@ -1,5 +1,6 @@
 const cacheInstance = require("./cache");
 const { getBlame, listFiles, getRemoteOrigin } = require("./git");
+const { sortByLinesDesc } = require("./utils");
 const Queue = require("./queue");
 
 function appendBlame(data, moreData) {
@@ -117,19 +118,7 @@ function toPercentage(current, total) {
   return (current * 100) / total;
 }
 
-function sortByKnowledge(elements) {
-  elements.sort((a, b) => {
-    if (a.lines < b.lines) {
-      return 1;
-    } else if (a.lines > b.lines) {
-      return -1;
-    } else {
-      return 0;
-    }
-  });
 
-  return elements;
-}
 
 function combineFreshAndFading(fresh, fading) {
   const combined = {};
@@ -218,9 +207,7 @@ module.exports = async function main(
           getBlame(repository, filename)
         );
 
-        if (verbose) {
-          fileData[filename] = newData;
-        }
+        fileData[filename] = newData;
 
         const balanced = rebalance(newData, weight);
 
@@ -245,9 +232,9 @@ module.exports = async function main(
 
   const combined = combineFreshAndFading(fresh, fading);
 
-  const freshKnowledge = sortByKnowledge(Object.values(combined));
+  const freshKnowledge = sortByLinesDesc(Object.values(combined));
 
-  const computed = {
+  return {
     total: totalLines,
     categories: {
       fresh,
@@ -260,18 +247,13 @@ module.exports = async function main(
       lost: lostPercentage
     },
     knowledge: {
-      fresh: sortByKnowledge(freshKnowledge),
-      lost: sortByKnowledge(
+      fresh: sortByLinesDesc(freshKnowledge),
+      lost: sortByLinesDesc(
         Object.entries(lost)
           .filter(entry => entry[0] !== "total")
           .map(([name, lines]) => ({ name, lines }))
       )
-    }
+    },
+    fileData
   };
-
-  if (verbose) {
-    computed.fileData = fileData;
-  }
-
-  return computed;
 };

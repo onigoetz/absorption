@@ -5,6 +5,8 @@ const hardRejection = require("hard-rejection");
 const colors = require("colors/safe");
 const table = require("tty-table");
 
+const { sortByLinesDesc } = require("./utils");
+
 const {
   transformThreshold,
   loadFile,
@@ -99,6 +101,7 @@ yargs
       const threshold = transformThreshold(argv.threshold);
       const weights = argv.weights ? loadFile(argv.weights) : {};
       const withMedia = argv.withMedia;
+      const verbose = argv.verbose;
 
       const result = await calculate(
         contributors,
@@ -109,6 +112,10 @@ yargs
       );
 
       if (argv.json) {
+        if (!verbose) {
+          delete result.fileData;
+        }
+
         const output = filePath(argv.json);
         fs.writeFileSync(output, JSON.stringify(result, null, 2));
         console.log("Report written to", output);
@@ -140,6 +147,35 @@ yargs
           "It seems this repository has no lost knowledge, congratulations !"
         );
       }
+
+      console.log();
+      console.log(colors.bold("Biggest files"));
+
+      console.log(
+        "Big files can skew the results (static test data, media files...), here are the biggest files found in this repository."
+      );
+
+      sortByLinesDesc(
+        Object.entries(result.fileData).reduce((acc, [name, data]) => {
+          const lines = Object.values(data).reduce(
+            (total, fileContributors) =>
+              total +
+              Object.values(fileContributors).reduce(
+                (subTotal, contributor) => subTotal + contributor,
+                0
+              ),
+            0
+          );
+
+          acc.push({ name, lines });
+
+          return acc;
+        }, [])
+      )
+        .slice(0, 5)
+        .forEach(file => {
+          console.log(`- ${file.name} (${file.lines} lines)`);
+        });
     }
   )
   .option("json", {

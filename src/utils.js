@@ -98,6 +98,20 @@ function prepareWeights(weights, withMedia) {
   return file => methods.find(([fn]) => fn(file))[1];
 }
 
+function sortByLinesDesc(elements) {
+  elements.sort((a, b) => {
+    if (a.lines < b.lines) {
+      return 1;
+    } else if (a.lines > b.lines) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+
+  return elements;
+}
+
 module.exports = {
   chunksToLines,
   getBeginningOfMonth,
@@ -105,5 +119,6 @@ module.exports = {
   transformThreshold,
   filePath,
   loadFile,
-  prepareWeights
+  prepareWeights,
+  sortByLinesDesc
 };

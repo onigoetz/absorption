@@ -19,8 +19,8 @@ Then by using a thresold date (1 year by default) we sort the elements in two bu
 
 This allows us to go in the last step of the process, sorting all those commits in three categories :
 
-- Active : Code that was modified recently (after the thresold)
-- Passive : Code that was modified before the threshold but by an active contributor
+- Fresh : Code that was modified recently (after the thresold)
+- Fading : Code that was modified before the threshold but by a contributor who was also active more recently
 - Lost : Code that was modified by somebody no longer active on the repository
 
 This, in turn will give you a bus factor : How many people need to stop commiting on a project for it to be in danger.
@@ -54,15 +54,15 @@ A more advanced example :
 absorption /Users/onigoetz/Sites/Libs/crafty --weights weights.json --contributors contributors.json
 Scanning ████████████████████████████████████████ | 100% | 520/520
 
-The repository's absorption score is 39% active, 61% passive and 0% lost
+The repository's absorption score is 39% fresh, 61% fading and 0% lost
 
-Active/Passive members
+Fresh/Fading knowledge
 ----------------------
- - Stéphane Goetz  99.62 % (38.81% active, 60.81% passive)
- - Vitalii Shapovalov  0.20 % (0.20% active, 0.00% passive)
+ - Stéphane Goetz  99.62 % (38.81% fresh, 60.81% fading)
+ - Vitalii Shapovalov  0.20 % (0.20% fresh, 0.00% fading)
 Lost
 ----
- - Illia Shestakov <ilyuhazp@gmail.com>  0.10 %
+ - Illia Shestakov  0.10 %
  - Marie P-W <marie.wermuth@gmail.com>  0.04 %
  - Jonas Renaudot  0.03 %
  - mindhalt <mindhalt@gmail.com>  0.01 %
@@ -94,7 +94,7 @@ The fields:
 
 - `type`: "person" or "bot", bots will be excluded from the output.
 - `name`: This name will be used for display.
-- `active`: (Optional) can force somebody to active or inactive.
+- `active`: (Optional) Setting this value to true, will move lost knowledge to "fading" knowledge and if false, will move "fresh" and "fading" knowledge to "lost"
 - `identities`: The list of elements to match the contributors to.
 
 ### `--weights weights.json`

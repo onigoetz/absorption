@@ -20,16 +20,16 @@ function appendBlame(data, moreData) {
   });
 }
 
-function getLevelBefore(contributorByName, active, who) {
+function getLevelBefore(contributorByName, fresh, who) {
   // Find if there was an override
   if (
     contributorByName.hasOwnProperty(who) &&
     contributorByName[who].hasOwnProperty("active")
   ) {
-    return contributorByName[who].active ? "passive" : "lost";
+    return contributorByName[who].active ? "fading" : "lost";
   }
 
-  return active.hasOwnProperty(who) ? "passive" : "lost";
+  return fresh.hasOwnProperty(who) ? "fading" : "lost";
 }
 
 function getLevelAfter(contributorByName, who) {
@@ -38,10 +38,10 @@ function getLevelAfter(contributorByName, who) {
     contributorByName.hasOwnProperty(who) &&
     contributorByName[who].hasOwnProperty("active")
   ) {
-    return contributorByName[who].active ? "active" : "lost";
+    return contributorByName[who].active ? "fresh" : "lost";
   }
 
-  return "active";
+  return "fresh";
 }
 
 function computeAbsorption(threshold, contributors, data, verbose) {
@@ -78,13 +78,13 @@ function computeAbsorption(threshold, contributors, data, verbose) {
     });
   });
 
-  // Then, we categorize in active, passive and lost
-  // Active is the amount of lines written in the last year by people still active
-  // Passive is the amount of lines written before last year by people still active
-  // Lost is the amount of lines written before last year by people inactive
+  // Then, we categorize in fresh, fading and lost
+  // Fresh is the amount of lines written in the threshold period by people still active
+  // Fading is the amount of lines written before the threshold period by people still active
+  // Lost is the amount of lines written before the threshold period by people inactive
   const levels = {
-    active: { total: 0 },
-    passive: { total: 0 },
+    fresh: { total: 0 },
+    fading: { total: 0 },
     lost: { total: 0 }
   };
 
@@ -98,11 +98,11 @@ function computeAbsorption(threshold, contributors, data, verbose) {
   });
 
   // Code that was contributed before the thresold is considered lost
-  // If it was contributed by an active commiter, it is considered passive
-  // If it was contributed by a member explicitly set as "active: true"
-  // it will be set as passive even if the contributor didn't contribute more recently.
+  // If it was contributed by an active contributor, it is considered fading
+  // If it was contributed by a contributor explicitly set as "active: true"
+  // it will be set as fading even if the contributor didn't contribute more recently.
   Object.keys(before).forEach(who => {
-    const level = getLevelBefore(contributorByName, levels.active, who);
+    const level = getLevelBefore(contributorByName, levels.fresh, who);
     if (!levels[level].hasOwnProperty(who)) {
       levels[level][who] = 0;
     }
@@ -131,21 +131,21 @@ function sortByKnowledge(elements) {
   return elements;
 }
 
-function combineActiveAndPassive(active, passive) {
+function combineFreshAndFading(fresh, fading) {
   const combined = {};
-  Object.keys(active).forEach(who => {
+  Object.keys(fresh).forEach(who => {
     if (who === "total") {
       return;
     }
     combined[who] = {
       name: who,
-      lines: active[who],
-      activeLines: active[who],
-      passiveLines: 0
+      lines: fresh[who],
+      freshLines: fresh[who],
+      fadingLines: 0
     };
   });
 
-  Object.keys(passive).forEach(who => {
+  Object.keys(fading).forEach(who => {
     if (who === "total") {
       return;
     }
@@ -153,12 +153,12 @@ function combineActiveAndPassive(active, passive) {
       combined[who] = {
         name: who,
         lines: 0,
-        activeLines: 0,
-        passiveLines: 0
+        freshLines: 0,
+        fadingLines: 0
       };
     }
-    combined[who].lines += passive[who];
-    combined[who].passiveLines = passive[who];
+    combined[who].lines += fading[who];
+    combined[who].fadingLines = fading[who];
   });
 
   return combined;
@@ -231,36 +231,36 @@ module.exports = async function main(
 
   await queue.await();
 
-  const { active, passive, lost } = computeAbsorption(
+  const { fresh, fading, lost } = computeAbsorption(
     threshold,
     contributors,
     data,
     verbose
   );
 
-  const totalLines = active.total + passive.total + lost.total;
-  const activePercentage = Math.round(toPercentage(active.total, totalLines));
-  const passivePercentage = Math.round(toPercentage(passive.total, totalLines));
+  const totalLines = fresh.total + fading.total + lost.total;
+  const freshPercentage = Math.round(toPercentage(fresh.total, totalLines));
+  const fadingPercentage = Math.round(toPercentage(fading.total, totalLines));
   const lostPercentage = Math.round(toPercentage(lost.total, totalLines));
 
-  const combined = combineActiveAndPassive(active, passive);
+  const combined = combineFreshAndFading(fresh, fading);
 
-  const activeKnowledge = sortByKnowledge(Object.values(combined));
+  const freshKnowledge = sortByKnowledge(Object.values(combined));
 
   const computed = {
     total: totalLines,
     categories: {
-      active,
-      passive,
+      fresh,
+      fading,
       lost
     },
     absorption: {
-      active: activePercentage,
-      passive: passivePercentage,
+      fresh: freshPercentage,
+      fading: fadingPercentage,
       lost: lostPercentage
     },
     knowledge: {
-      active: sortByKnowledge(activeKnowledge),
+      fresh: sortByKnowledge(freshKnowledge),
       lost: sortByKnowledge(
         Object.entries(lost)
           .filter(entry => entry[0] !== "total")

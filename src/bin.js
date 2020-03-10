@@ -72,28 +72,28 @@ yargs
 
       console.log("");
       console.log(
-        `The repository's absorption score is ${result.absorption.active}% active, ${result.absorption.passive}% passive and ${result.absorption.lost}% lost`
+        `The repository's absorption score is ${result.absorption.fresh}% fresh, ${result.absorption.fading}% fading and ${result.absorption.lost}% lost`
       );
       console.log("");
 
-      console.log("Active/Passive members");
+      console.log("Fresh/Fading knowledge");
       console.log("----------------------");
-      const activeMembers = result.knowledge.active.slice(0, 10);
-      activeMembers.forEach(({ name, lines, activeLines, passiveLines }) => {
-        const percentage = (lines * 100) / result.total;
-        const active = (activeLines * 100) / result.total;
-        const passive = (passiveLines * 100) / result.total;
-        console.log(
-          ` - ${name}  ${percentage.toFixed(2)} % (${active.toFixed(
-            2
-          )}% active, ${passive.toFixed(2)}% passive)`
-        );
-      });
+      result.knowledge.fresh
+        .slice(0, 10)
+        .forEach(({ name, lines, freshLines, fadingLines }) => {
+          const percentage = (lines * 100) / result.total;
+          const fresh = (freshLines * 100) / result.total;
+          const fading = (fadingLines * 100) / result.total;
+          console.log(
+            ` - ${name}  ${percentage.toFixed(2)} % (${fresh.toFixed(
+              2
+            )}% fresh, ${fading.toFixed(2)}% fading)`
+          );
+        });
 
       console.log("Lost");
       console.log("----");
-      const lostMembers = result.knowledge.lost.slice(0, 10);
-      lostMembers.forEach(({ name, lines }) => {
+      result.knowledge.lost.slice(0, 10).forEach(({ name, lines }) => {
         const percentage = (lines * 100) / result.total;
         console.log(` - ${name}  ${percentage.toFixed(2)} %`);
       });

@@ -22,7 +22,8 @@ test("Weight", () => {
       "src/business/**": 2,
       "**/*.js": 1.5
     },
-    true
+    true,
+    false
   );
 
   expect(weight("some/random/file.css")).toEqual(1);
@@ -35,6 +36,7 @@ test("Weight", () => {
 test("Weight: Ignore media files", () => {
   const weight = prepareWeights(
     { "**/__tests__/*": 0.5, "**/*.gif": 2 },
+    false,
     false
   );
 

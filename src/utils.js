@@ -78,9 +78,23 @@ const mediaPatterns = [
   "**/*.{webm,mkv,flv,vob,ogv,drc,gifv,mng,avi,mov,qt,wmv,yuv,rmvb,asf,amv,mp4,m4p,m4v,mpg,mp2,mpeg,mpv,m2v,m4v,svi,3g2,mxf,roq,nsv,aa}"
 ];
 
-function prepareWeights(weights, withMedia) {
+const lockfilePatterns = [
+  "**/package-lock.json",
+  "**/yarn.lock",
+  "**/composer.lock"
+];
+
+function prepareWeights(weights, withMedia, withLockfiles) {
   if (!withMedia) {
     for (const pattern of mediaPatterns) {
+      if (!weights.hasOwnProperty(pattern)) {
+        weights[pattern] = 0;
+      }
+    }
+  }
+
+  if (!withLockfiles) {
+    for (const pattern of lockfilePatterns) {
       if (!weights.hasOwnProperty(pattern)) {
         weights[pattern] = 0;
       }

@@ -83,8 +83,9 @@ yargs
       const repository = argv.repository;
       const weights = argv.weights ? loadFile(argv.weights) : {};
       const withMedia = argv.withMedia;
+      const withLockfiles = argv.withLockfiles;
 
-      const getWeight = prepareWeights(weights, withMedia);
+      const getWeight = prepareWeights(weights, withMedia, withLockfiles);
 
       await listFiles(repository, (filename, hash) => {
         console.log(` ${filename} ${getWeight(filename)}`);
@@ -101,14 +102,15 @@ yargs
       const threshold = transformThreshold(argv.threshold);
       const weights = argv.weights ? loadFile(argv.weights) : {};
       const withMedia = argv.withMedia;
+      const withLockfiles = argv.withLockfiles;
       const verbose = argv.verbose;
 
       const result = await calculate(
         contributors,
-        prepareWeights(weights, withMedia),
+        prepareWeights(weights, withMedia, withLockfiles),
         threshold,
         repository,
-        argv.verbose
+        verbose
       );
 
       if (argv.json) {

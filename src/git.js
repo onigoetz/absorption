@@ -77,10 +77,13 @@ async function listFiles(repository, onFile) {
 
   for await (const line of chunksToLines(running.stdout)) {
     const separated = line.split(/\t/);
-    const filename = separated[1].slice(0, -1);
-    const hash = separated[0].slice(-40);
+    const type = line.slice(7, 11);
 
-    onFile(filename, hash);
+    if (type === "blob") {
+      const filename = separated[1].slice(0, -1);
+      const hash = separated[0].slice(-40);
+      onFile(filename, hash);
+    }
   }
 
   await running;

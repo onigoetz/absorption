@@ -62,12 +62,7 @@ function renderFresh(result, maxResults) {
   };
 
   console.log(
-    table(
-      header,
-      result.knowledge.fresh.slice(0, maxResults),
-      null,
-      options
-    ).render()
+    table(header, result.knowledge.fresh.slice(0, maxResults), null, options).render()
   );
 }
 
@@ -149,9 +144,7 @@ yargs
       console.log();
       console.log(colors.bold("Lost"));
       if (result.knowledge.lost.length) {
-        result.knowledge.lost
-          .slice(0, argv.maxLostContributors)
-          .forEach(({ name, lines }) => {
+        result.knowledge.lost.slice(0, argv.maxLostContributors).forEach(({ name, lines }) => {
             const percentage = (lines * 100) / result.total;
             console.log(` - ${name}  ${percentage.toFixed(2)} %`);
           });

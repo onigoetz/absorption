@@ -118,8 +118,6 @@ function toPercentage(current, total) {
   return (current * 100) / total;
 }
 
-
-
 function combineFreshAndFading(fresh, fading) {
   const combined = {};
   Object.keys(fresh).forEach(who => {
@@ -171,7 +169,9 @@ module.exports = async function main(
   getWeight,
   threshold,
   repository,
-  verbose
+  verbose,
+  maxContributors,
+  maxLostContributors
 ) {
   const queue = new Queue(verbose);
   const data = {};

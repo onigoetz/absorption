@@ -171,7 +171,9 @@ module.exports = async function main(
   getWeight,
   threshold,
   repository,
-  verbose
+  verbose,
+  maxContributors,
+  maxLostContributors
 ) {
   const queue = new Queue(verbose);
   const data = {};

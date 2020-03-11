@@ -20,7 +20,7 @@ hardRejection();
 
 process.title = "absorption";
 
-function renderFresh(result) {
+function renderFresh(result, maxResults) {
   function toPct(lines) {
     return `${((lines * 100) / result.total).toFixed(2)} %`;
   }
@@ -62,7 +62,12 @@ function renderFresh(result) {
   };
 
   console.log(
-    table(header, result.knowledge.fresh.slice(0, 10), null, options).render()
+    table(
+      header,
+      result.knowledge.fresh.slice(0, maxResults),
+      null,
+      options
+    ).render()
   );
 }
 
@@ -104,13 +109,17 @@ yargs
       const withMedia = argv.withMedia;
       const withLockfiles = argv.withLockfiles;
       const verbose = argv.verbose;
+      const maxContributors = argv.maxContributors;
+      const maxLostContributors = argv.maxLostContributors;
 
       const result = await calculate(
         contributors,
         prepareWeights(weights, withMedia, withLockfiles),
         threshold,
         repository,
-        verbose
+        verbose,
+        maxContributors,
+        maxLostContributors
       );
 
       if (argv.json) {
@@ -132,7 +141,7 @@ yargs
 
       console.log(colors.bold("Fresh/Fading knowledge"));
       if (result.knowledge.fresh.length) {
-        renderFresh(result);
+        renderFresh(result, argv.maxContributors);
       } else {
         console.log("It seems this repository has no fresh knowledge.");
       }
@@ -140,10 +149,12 @@ yargs
       console.log();
       console.log(colors.bold("Lost"));
       if (result.knowledge.lost.length) {
-        result.knowledge.lost.slice(0, 10).forEach(({ name, lines }) => {
-          const percentage = (lines * 100) / result.total;
-          console.log(` - ${name}  ${percentage.toFixed(2)} %`);
-        });
+        result.knowledge.lost
+          .slice(0, argv.maxLostContributors)
+          .forEach(({ name, lines }) => {
+            const percentage = (lines * 100) / result.total;
+            console.log(` - ${name}  ${percentage.toFixed(2)} %`);
+          });
       } else {
         console.log(
           "It seems this repository has no lost knowledge, congratulations !"
@@ -189,6 +200,16 @@ yargs
       "start with a number, followed by 'd' for days, 'w' for weeks, 'm' for months or 'y' for years (1y, 6m, 9w)",
     default: "1y",
     type: "string"
+  })
+  .option("max-contributors", {
+    describe: "Max number of active contributors",
+    type: "integer",
+    default: 10
+  })
+  .option("max-lost-contributors", {
+    describe: "Max number of lost contributors",
+    type: "integer",
+    default: 10
   })
   .option("contributors", {
     describe: "Add complementary contributors data, through a JSON file",

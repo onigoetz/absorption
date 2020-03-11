@@ -3,7 +3,7 @@ const fs = require("fs");
 const yargs = require("yargs");
 const hardRejection = require("hard-rejection");
 const colors = require("colors/safe");
-const table = require("tty-table");
+const { table } = require("table");
 
 const { sortByLinesDesc } = require("./utils");
 
@@ -20,50 +20,120 @@ hardRejection();
 
 process.title = "absorption";
 
+function renderTable(header, columns, rows) {
+  const options = {
+    border: {
+      bodyLeft: ``,
+      bodyRight: ``,
+      bodyJoin: colors.gray(`│`),
+      joinBody: colors.gray(`─`),
+      joinLeft: ``,
+      joinRight: ``,
+      joinJoin: colors.gray(`┼`)
+    },
+    drawHorizontalLine(index) {
+      return index === 1;
+    },
+    columns
+  };
+
+  return table([header].concat(rows), options);
+}
+
 function renderFresh(result, maxResults) {
   function toPct(lines) {
     return `${((lines * 100) / result.total).toFixed(2)} %`;
   }
 
-  const header = [
-    {
-      value: "name",
-      alias: "Name",
-      align: "left",
-      headerAlign: "left"
-    },
-    {
-      value: "lines",
-      alias: "Total",
-      align: "right",
-      width: 10,
-      formatter: toPct
-    },
-    {
-      value: "freshLines",
-      alias: "Fresh",
-      align: "right",
-      width: 10,
-      formatter: toPct
-    },
-    {
-      value: "fadingLines",
-      alias: "Fading",
-      align: "right",
-      width: 10,
-      formatter: toPct
-    }
-  ];
+  const rows = result.knowledge.fresh
+    .slice(0, maxResults)
+    .map(({ name, lines, freshLines, fadingLines }) => [
+      name,
+      toPct(lines),
+      toPct(freshLines),
+      toPct(fadingLines)
+    ]);
 
-  const options = {
-    borderStyle: "solid",
-    borderColor: "gray",
-    headerAlign: "right"
+  const columns = {
+    0: {
+      alignment: "left"
+    },
+    1: {
+      alignment: "right",
+      width: 8
+    },
+    2: {
+      alignment: "right",
+      width: 8
+    },
+    3: {
+      alignment: "right",
+      width: 8
+    }
   };
 
-  console.log(
-    table(header, result.knowledge.fresh.slice(0, maxResults), null, options).render()
-  );
+  console.log(renderTable(["Name", "Total", "Fresh", "Fading"], columns, rows));
+}
+
+function renderLost(result, maxLostContributors) {
+  function toPct(lines) {
+    return `${((lines * 100) / result.total).toFixed(2)} %`;
+  }
+
+  const rows = result.knowledge.lost
+    .slice(0, maxLostContributors)
+    .map(({ name, lines }) => [name, toPct(lines)]);
+
+  const columns = {
+    0: {
+      alignment: "left"
+    },
+    1: {
+      alignment: "right",
+      width: 8
+    }
+  };
+
+  console.log(renderTable(["Name", "Total"], columns, rows));
+}
+
+function renderBigFiles(fileData) {
+  const rows = sortByLinesDesc(
+    Object.entries(fileData).reduce((acc, [name, data]) => {
+      const lines = Object.values(data).reduce(
+        (total, fileContributors) =>
+          total +
+          Object.values(fileContributors).reduce(
+            (subTotal, contributor) => subTotal + contributor,
+            0
+          ),
+        0
+      );
+
+      acc.push({ name, lines });
+
+      return acc;
+    }, [])
+  )
+    .slice(0, 5)
+    .map(({ name, lines }) => [name, lines]);
+
+  const columns = {
+    0: {
+      alignment: "left"
+    },
+    1: {
+      alignment: "right"
+    }
+  };
+
+  console.log(renderTable(["File", "Lines"], columns, rows));
+}
+
+function renderTitle(title) {
+  console.log();
+  console.log(colors.bold(title));
+  console.log();
 }
 
 function commandRepositoryConfig(config) {
@@ -132,56 +202,30 @@ yargs
       console.log(
         `The repository's absorption score is ${result.absorption.fresh}% fresh, ${result.absorption.fading}% fading and ${result.absorption.lost}% lost`
       );
-      console.log();
 
-      console.log(colors.bold("Fresh/Fading knowledge"));
+      renderTitle("Fresh/Fading knowledge");
       if (result.knowledge.fresh.length) {
         renderFresh(result, argv.maxContributors);
       } else {
         console.log("It seems this repository has no fresh knowledge.");
       }
 
-      console.log();
-      console.log(colors.bold("Lost"));
+      renderTitle("List");
       if (result.knowledge.lost.length) {
-        result.knowledge.lost.slice(0, argv.maxLostContributors).forEach(({ name, lines }) => {
-            const percentage = (lines * 100) / result.total;
-            console.log(` - ${name}  ${percentage.toFixed(2)} %`);
-          });
+        renderLost(result, argv.maxLostContributors);
       } else {
         console.log(
           "It seems this repository has no lost knowledge, congratulations !"
         );
       }
 
-      console.log();
-      console.log(colors.bold("Biggest files"));
-
+      renderTitle("Biggest files");
       console.log(
         "Big files can skew the results (static test data, media files...), here are the biggest files found in this repository."
       );
+      console.log();
 
-      sortByLinesDesc(
-        Object.entries(result.fileData).reduce((acc, [name, data]) => {
-          const lines = Object.values(data).reduce(
-            (total, fileContributors) =>
-              total +
-              Object.values(fileContributors).reduce(
-                (subTotal, contributor) => subTotal + contributor,
-                0
-              ),
-            0
-          );
-
-          acc.push({ name, lines });
-
-          return acc;
-        }, [])
-      )
-        .slice(0, 5)
-        .forEach(file => {
-          console.log(`- ${file.name} (${file.lines} lines)`);
-        });
+      renderBigFiles(result.fileData);
     }
   )
   .option("json", {

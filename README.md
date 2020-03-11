@@ -61,19 +61,20 @@ The repository's absorption score is 16% fresh, 84% fading and 0% lost
 
 Fresh/Fading knowledge
 
-  ┌────────────────────┬──────────┬──────────┬──────────┐
-  │ Name               │    Total │    Fresh │   Fading │
-  ├────────────────────┼──────────┼──────────┼──────────┤
-  │ Stéphane Goetz     │  99.51 % │  15.67 % │  83.83 % │
-  ├────────────────────┼──────────┼──────────┼──────────┤
-  │ Vitalii Shapovalov │   0.14 % │   0.14 % │   0.00 % │
-  └────────────────────┴──────────┴──────────┴──────────┘
+ Name               │    Total │    Fresh │   Fading 
+────────────────────┼──────────┼──────────┼──────────
+ Stéphane Goetz     │  99.51 % │  15.67 % │  83.83 % 
+ Vitalii Shapovalov │   0.14 % │   0.14 % │   0.00 % 
 
-Lost
- - Illia Shestakov  0.19 %
- - Marie P-W <marie.wermuth@gmail.com>  0.08 %
- - Jonas Renaudot  0.05 %
- - mindhalt <mindhalt@gmail.com>  0.03 %
+
+List
+
+ Name                                │    Total 
+─────────────────────────────────────┼──────────
+ Illia Shestakov                     │   0.19 % 
+ Marie P-W <marie.wermuth@gmail.com> │   0.08 % 
+ Jonas Renaudot                      │   0.05 % 
+ mindhalt <mindhalt@gmail.com>       │   0.03 % 
 ```
 
 ### `--contributors contributors.json`

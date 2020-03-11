@@ -24,7 +24,7 @@
     "find-cache-dir": "^3.3.0",
     "hard-rejection": "^2.1.0",
     "micromatch": "^4.0.2",
-    "tty-table": "^4.0.0",
+    "table": "^5.4.6",
     "yargs": "^15.1.0"
   },
   "devDependencies": {

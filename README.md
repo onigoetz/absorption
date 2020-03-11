@@ -47,6 +47,8 @@ You can then use the options of the command to fine tune the results.
 - `--with-lockfiles` Lockfiles (`package-lock.json`, `yarn.lock`, `composer.lock`) are excluded by default from the scan, setting `--with-lockfiles` will include them.
 - `--verbose` Output lots of debug information
 - `--json file.json` Output the raw data to a json file. (used in conjunction with `--verbose` will output raw data per file as well)
+- `--max-contributors 10` Allows to customize the number of active contributors displayed in the table (default: 10)
+- `--max-lost-contributors 10` Allows to customize the number of lost contributors displayed in the list (default: 10)
 
 
 A more advanced example :

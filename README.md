@@ -1,6 +1,6 @@
 # Absorption
 
-![Node.js CI](https://github.com/onigoetz/absorption/workflows/Node.js%20CI/badge.svg)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/onigoetz/absorption/Node.js%20CI?style=flat-square)
 
 ## What is absorption ?
 

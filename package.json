@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "cache-manager": "^3.1.0",
-    "cache-manager-fs-hash": "^0.0.8",
+    "cache-manager-fs-hash": "^0.0.9",
     "cli-progress": "^3.6.0",
     "colors": "^1.4.0",
     "execa": "^4.0.0",

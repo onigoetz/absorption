@@ -28,7 +28,7 @@
     "yargs": "^15.1.0"
   },
   "devDependencies": {
-    "@swissquote/eslint-plugin-swissquote": "1.11.1",
+    "@swissquote/eslint-plugin-swissquote": "1.12.0",
     "eslint": "7.2.0",
     "jest": "26.0.1"
   },

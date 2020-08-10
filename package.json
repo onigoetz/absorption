@@ -30,7 +30,7 @@
   "devDependencies": {
     "@swissquote/eslint-plugin-swissquote": "1.12.0",
     "eslint": "7.6.0",
-    "jest": "26.2.1"
+    "jest": "26.3.0"
   },
   "scripts": {
     "lint": "eslint src --fix",

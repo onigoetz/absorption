@@ -25,7 +25,7 @@
     "hard-rejection": "^2.1.0",
     "micromatch": "^4.0.2",
     "table": "^6.0.0",
-    "yargs": "^15.1.0"
+    "yargs": "^16.0.0"
   },
   "devDependencies": {
     "@swissquote/eslint-plugin-swissquote": "1.12.0",

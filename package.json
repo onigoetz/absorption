@@ -20,7 +20,7 @@
     "cache-manager-fs-hash": "^0.0.9",
     "cli-progress": "^3.6.0",
     "colors": "^1.4.0",
-    "execa": "^4.0.0",
+    "execa": "^5.0.0",
     "find-cache-dir": "^3.3.0",
     "hard-rejection": "^2.1.0",
     "micromatch": "^4.0.2",

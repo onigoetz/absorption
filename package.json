@@ -8,6 +8,7 @@
     "code-analysis",
     "metrics"
   ],
+  "type": "module",
   "main": "./src/index.js",
   "bin": {
     "absorption": "./src/bin.js"
@@ -24,17 +25,18 @@
     "find-cache-dir": "^3.3.0",
     "hard-rejection": "^2.1.0",
     "micromatch": "^4.0.2",
+    "p-queue": "^7.1.0",
     "table": "^6.0.0",
-    "yargs": "^16.0.0"
+    "yargs": "^17.0.0"
   },
   "devDependencies": {
     "@swissquote/eslint-plugin-swissquote": "1.14.0",
-    "eslint": "7.26.0",
-    "jest": "26.6.3"
+    "ava": "^3.15.0",
+    "eslint": "7.27.0"
   },
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "jest --coverage --collectCoverageFrom=src/*",
+    "test": "ava --coverage --collectCoverageFrom=src/*",
     "prepublishOnly": "yarn test",
     "postpublish": "git push && git push --tags"
   }

@@ -1,10 +1,10 @@
-const execa = require("execa");
-const { chunksToLines, getBeginningOfMonth } = require("./utils");
+import execa from "execa";
+import { chunksToLines, getBeginningOfMonth } from "./utils.js";
 
 const hashRegex = /^([0-9a-f]{40})\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)/;
 const authorRegex = /author(?:-(mail|time|tz))? (.*)/;
 
-async function getRemoteOrigin(cwd) {
+export async function getRemoteOrigin(cwd) {
   const result = await execa("git", ["remote", "get-url", "origin"], { cwd });
 
   return result.stdout;
@@ -14,7 +14,7 @@ function runBlame(cwd, file) {
   return execa("git", ["blame", "--incremental", file, "master"], { cwd });
 }
 
-async function getBlame(cwd, file) {
+export async function getBlame(cwd, file) {
   const running = runBlame(cwd, file);
 
   const hashes = {};
@@ -72,7 +72,7 @@ function getFiles(cwd) {
   return execa("git", ["ls-tree", "-r", "master"], { cwd });
 }
 
-async function listFiles(repository, onFile) {
+export async function listFiles(repository, onFile) {
   const running = getFiles(repository);
 
   for await (const line of chunksToLines(running.stdout)) {
@@ -88,9 +88,3 @@ async function listFiles(repository, onFile) {
 
   await running;
 }
-
-module.exports = {
-  getBlame,
-  listFiles,
-  getRemoteOrigin
-};

@@ -1,7 +1,14 @@
-const cacheInstance = require("./cache");
-const { getBlame, listFiles, getRemoteOrigin } = require("./git");
-const { sortByLinesDesc } = require("./utils");
-const Queue = require("./queue");
+import cacheInstance from "./cache.js";
+import { getBlame, listFiles, getRemoteOrigin } from "./git.js";
+import { sortByLinesDesc } from "./utils.js";
+import Queue from "p-queue";
+import cliProgress from "cli-progress";
+import { cpus } from "os";
+
+// We want to parallelize as much as possible,
+// but we certainly don't want to kill the machine it's running on.
+// This process will run 5 elements in paralels or cpu cores/2 whichever comes first
+const maxProcess = Math.min(5, Math.max(1, Math.floor(cpus().length / 2)));
 
 function appendBlame(data, moreData) {
   Object.keys(moreData).forEach(dateKey => {
@@ -164,7 +171,7 @@ function rebalance(newData, weight) {
   return final;
 }
 
-module.exports = async function main(
+export default async function main(
   contributors,
   getWeight,
   threshold,
@@ -173,7 +180,31 @@ module.exports = async function main(
   maxContributors,
   maxLostContributors
 ) {
-  const queue = new Queue(verbose);
+  let queueMaxSize = 0;
+  const queue = new Queue({ concurrency: maxProcess });
+  let progress = { stop() {} };
+  if (verbose) {
+    // TODO
+  } else {
+    progress = new cliProgress.SingleBar({
+      format: "Scanning {bar} | {percentage}% | {value}/{total} files",
+      barCompleteChar: "\u2588",
+      barIncompleteChar: "\u2591"
+    });
+
+    queue.on("add", () => {
+      if (queueMaxSize === 0) {
+        progress.start(1, 0);
+      }
+
+      queueMaxSize++;
+      progress.setTotal(queueMaxSize);
+    });
+    queue.on("next", () => {
+      progress.increment();
+    });
+  }
+
   const data = {};
   const fileData = {};
 
@@ -200,23 +231,21 @@ module.exports = async function main(
     }
 
     const cacheKey = `${repositoryCacheKey}:${hash}:${filename}:v2`;
-    queue.add({
-      name: filename,
-      fn: async () => {
-        const newData = await cacheInstance.wrap(cacheKey, () =>
-          getBlame(repository, filename)
-        );
+    queue.add(async () => {
+      const newData = await cacheInstance.wrap(cacheKey, () =>
+        getBlame(repository, filename)
+      );
 
-        fileData[filename] = newData;
+      fileData[filename] = newData;
 
-        const balanced = rebalance(newData, weight);
+      const balanced = rebalance(newData, weight);
 
-        appendBlame(data, balanced);
-      }
+      appendBlame(data, balanced);
     });
   });
 
-  await queue.await();
+  await queue.onIdle();
+  progress.stop();
 
   const { fresh, fading, lost } = computeAbsorption(
     threshold,

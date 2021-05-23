@@ -1,21 +1,28 @@
-/* global test, expect */
-const { getDuration, prepareWeights } = require("../utils.js");
+import test from "ava";
 
-test("Transform threshold", () => {
+import { getDuration, prepareWeights } from "../utils.js";
+
+test("Transform threshold", t => {
   const oneDay = 1000 * 60 * 60 * 24;
-  expect(getDuration("4y")).toEqual(4 * 365 * oneDay);
-  expect(getDuration("12m")).toEqual(12 * 30 * oneDay);
-  expect(getDuration("16w")).toEqual(16 * 7 * oneDay);
-  expect(getDuration("42d")).toEqual(42 * oneDay);
-  expect(() => {
-    getDuration("36x");
-  }).toThrow(/Invalid threshold '36x'./);
-  expect(() => {
-    getDuration("xxx");
-  }).toThrow(/Invalid threshold 'xxx'./);
+  t.is(getDuration("4y"), 4 * 365 * oneDay);
+  t.is(getDuration("12m"), 12 * 30 * oneDay);
+  t.is(getDuration("16w"), 16 * 7 * oneDay);
+  t.is(getDuration("42d"), 42 * oneDay);
+  t.throws(
+    () => {
+      getDuration("36x");
+    },
+    { message: /Invalid threshold '36x'./ }
+  );
+  t.throws(
+    () => {
+      getDuration("xxx");
+    },
+    { message: /Invalid threshold 'xxx'./ }
+  );
 });
 
-test("Weight", () => {
+test("Weight", t => {
   const weight = prepareWeights(
     {
       "**/__tests__/*": 0.5,
@@ -26,25 +33,25 @@ test("Weight", () => {
     false
   );
 
-  expect(weight("some/random/file.css")).toEqual(1);
-  expect(weight("src/business/some/file.js")).toEqual(2);
-  expect(weight("src/__tests__/utils.js")).toEqual(0.5);
-  expect(weight("deep/nested/__tests__/utils.js")).toEqual(0.5);
-  expect(weight("any/javascript.js")).toEqual(1.5);
+  t.is(1, weight("some/random/file.css"));
+  t.is(2, weight("src/business/some/file.js"));
+  t.is(0.5, weight("src/__tests__/utils.js"));
+  t.is(0.5, weight("deep/nested/__tests__/utils.js"));
+  t.is(1.5, weight("any/javascript.js"));
 });
 
-test("Weight: Ignore media files", () => {
+test("Weight: Ignore media files", t => {
   const weight = prepareWeights(
     { "**/__tests__/*": 0.5, "**/*.gif": 2 },
     false,
     false
   );
 
-  expect(weight("some/random/file.css")).toEqual(1);
-  expect(weight("src/business/some/file.js")).toEqual(1);
-  expect(weight("src/__tests__/utils.js")).toEqual(0.5);
-  expect(weight("deep/nested/__tests__/utils.js")).toEqual(0.5);
-  expect(weight("any/file.jpg")).toEqual(0);
-  expect(weight("any/file.gif")).toEqual(2);
-  expect(weight("video.mp4")).toEqual(0);
+  t.is(weight("some/random/file.css"), 1);
+  t.is(weight("src/business/some/file.js"), 1);
+  t.is(weight("src/__tests__/utils.js"), 0.5);
+  t.is(weight("deep/nested/__tests__/utils.js"), 0.5);
+  t.is(weight("any/file.jpg"), 0);
+  t.is(weight("any/file.gif"), 2);
+  t.is(weight("video.mp4"), 0);
 });

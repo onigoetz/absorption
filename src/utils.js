@@ -1,5 +1,6 @@
-const path = require("path");
-const mm = require("micromatch");
+import path from "path";
+import mm from "micromatch";
+import fs from "fs";
 
 /**
  * @param chunkIterable An asynchronous or synchronous iterable
@@ -7,7 +8,7 @@ const mm = require("micromatch");
  * @returns An asynchronous iterable over “lines”
  * (strings with at most one newline that always appears at the end)
  */
-async function* chunksToLines(chunkIterable) {
+export async function* chunksToLines(chunkIterable) {
   let previous = "";
   for await (const chunk of chunkIterable) {
     previous += chunk;
@@ -28,7 +29,7 @@ async function* chunksToLines(chunkIterable) {
   }
 }
 
-function getBeginningOfMonth(time) {
+export function getBeginningOfMonth(time) {
   const rawDate = new Date(time);
   const year = rawDate.getFullYear();
   const month = rawDate.getMonth();
@@ -44,7 +45,7 @@ const thresholdMultipliers = {
   y: 365
 };
 
-function getDuration(threshold) {
+export function getDuration(threshold) {
   const m = thresholdRegex.exec(threshold);
 
   if (!m) {
@@ -56,17 +57,32 @@ function getDuration(threshold) {
   return oneDay * parseInt(m[1], 10) * thresholdMultipliers[m[2]];
 }
 
-function transformThreshold(threshold) {
+export function transformThreshold(threshold) {
   const now = new Date().getTime();
   return now - getDuration(threshold);
 }
 
-function filePath(file) {
+export function filePath(file) {
   return path.isAbsolute(file) ? file : path.join(process.cwd(), file);
 }
 
-function loadFile(file) {
-  return require(filePath(file));
+export async function loadFile(file) {
+  const resolvedPath = filePath(file);
+
+  // JSON Files have to be parsed by loading them
+  if (/\.json$/.test(file)) {
+    return fs.promises
+      .readFile(resolvedPath, { encoding: "UTF-8" })
+      .then(content => JSON.parse(content));
+  }
+
+  const imported = await import(resolvedPath);
+
+  if (imported.default) {
+    return imported.default;
+  }
+
+  return imported;
 }
 
 const mediaPatterns = [
@@ -84,7 +100,7 @@ const lockfilePatterns = [
   "**/composer.lock"
 ];
 
-function prepareWeights(weights, withMedia, withLockfiles) {
+export function prepareWeights(weights, withMedia, withLockfiles) {
   if (!withMedia) {
     for (const pattern of mediaPatterns) {
       if (!weights.hasOwnProperty(pattern)) {
@@ -112,7 +128,7 @@ function prepareWeights(weights, withMedia, withLockfiles) {
   return file => methods.find(([fn]) => fn(file))[1];
 }
 
-function sortByLinesDesc(elements) {
+export function sortByLinesDesc(elements) {
   elements.sort((a, b) => {
     if (a.lines < b.lines) {
       return 1;
@@ -125,14 +141,3 @@ function sortByLinesDesc(elements) {
 
   return elements;
 }
-
-module.exports = {
-  chunksToLines,
-  getBeginningOfMonth,
-  getDuration,
-  transformThreshold,
-  filePath,
-  loadFile,
-  prepareWeights,
-  sortByLinesDesc
-};

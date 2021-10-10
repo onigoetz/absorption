@@ -1,7 +1,7 @@
 import execa from "execa";
 import { chunksToLines, getBeginningOfMonth } from "./utils.js";
 
-const hashRegex = /^([0-9a-f]{40})\s+([0-9]+)\s+([0-9]+)\s+([0-9]+)/;
+const hashRegex = /^([0-9a-f]{40})\s+(\d+)\s+(\d+)\s+(\d+)/;
 const authorRegex = /author(?:-(mail|time|tz))? (.*)/;
 
 export async function getRemoteOrigin(cwd) {

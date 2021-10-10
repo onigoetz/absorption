@@ -36,7 +36,7 @@ export function getBeginningOfMonth(time) {
   return new Date(year, month, 1, 0, 0, 0, 0);
 }
 
-const thresholdRegex = /^([0-9]+)([ymwd]{1})$/;
+const thresholdRegex = /^(\d+)([ymwd]{1})$/;
 const oneDay = 1000 * 60 * 60 * 24;
 const thresholdMultipliers = {
   d: 1,

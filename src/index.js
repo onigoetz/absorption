@@ -182,10 +182,12 @@ export default async function main(
 ) {
   let queueMaxSize = 0;
   const queue = new Queue({ concurrency: maxProcess });
-  let progress = { stop() {} };
-  if (verbose) {
-    // TODO
-  } else {
+  let progress = {
+    stop() {
+      // Fake progress
+    }
+  };
+  if (!verbose) {
     progress = new cliProgress.SingleBar({
       format: "Scanning {bar} | {percentage}% | {value}/{total} files",
       barCompleteChar: "\u2588",

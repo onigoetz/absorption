@@ -269,4 +269,5 @@ yargs(hideBin(process.argv))
   })
   //.example("$0 calculate -f foo.js", "count the lines in the given file")
   .help("h")
-  .alias("h", "help").argv;
+  .alias("h", "help")
+  .parse();

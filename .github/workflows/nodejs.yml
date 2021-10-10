@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x]
+        node-version: [16.x]
 
     steps:
     - uses: actions/checkout@v2
@@ -25,3 +25,11 @@ jobs:
     - run: yarn test
       env:
         CI: true
+    - name: SonarCloud Scan
+      if: github.repository == 'onigoetz/absorption' && github.event_name != 'pull_request'
+      uses: sonarsource/sonarqube-scan-action@v1.0.0
+      args: >
+        -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        SONAR_HOST_URL: https://sonarcloud.io

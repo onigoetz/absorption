@@ -32,11 +32,12 @@
   "devDependencies": {
     "@swissquote/eslint-plugin-swissquote": "1.16.0",
     "ava": "3.15.0",
+    "c8": "^7.10.0",
     "eslint": "^7.32.0"
   },
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "ava --coverage --collectCoverageFrom=src/*",
+    "test": "c8 --all --r text -r lcov ava --coverage --collectCoverageFrom=src/*",
     "prepublishOnly": "yarn test",
     "postpublish": "git push && git push --tags"
   }

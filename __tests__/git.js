@@ -34,7 +34,7 @@ jest.unstable_mockModule("execa", async () => {
 });
 
 const { default: execa } = await import("execa");
-const { getBlame } = await import("../git.js");
+const { getBlame } = await import("../src/git.js");
 
 describe("getBlame", () => {
   it("should Get Blame Data", async () => {

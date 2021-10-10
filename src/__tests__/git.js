@@ -499,7 +499,7 @@ describe("getBlame", () => {
     341b5b57b5944aefec867162a7e9c14a1e6b008f 41 269 3
     filename src/bin.js`.replace(/\n\s+/g, "\n");
 
-    const blame = await getBlame("dir", "somefile.js");
+    const blame = await getBlame("dir", "src/bin.js");
 
     expect(blame).toMatchInlineSnapshot(`
       Object {
@@ -517,7 +517,7 @@ describe("getBlame", () => {
     `);
     expect(execa).toHaveBeenCalledWith(
       "git",
-      ["blame", "--incremental", "somefile.js", "master"],
+      ["blame", "--incremental", "src/bin.js", "master"],
       { cwd: "dir" }
     );
   });

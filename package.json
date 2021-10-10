@@ -37,7 +37,7 @@
   },
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "NODE_OPTIONS=--experimental-vm-modules crafty --preset @swissquote/crafty-preset-jest test --coverage",
+    "test": "TZ=Europe/Zurich NODE_OPTIONS=--experimental-vm-modules crafty --preset @swissquote/crafty-preset-jest test --coverage",
     "prepublishOnly": "yarn test",
     "postpublish": "git push && git push --tags"
   }

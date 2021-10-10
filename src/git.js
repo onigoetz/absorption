@@ -10,12 +10,16 @@ export async function getRemoteOrigin(cwd) {
   return result.stdout;
 }
 
-function runBlame(cwd, file) {
-  return execa("git", ["blame", "--incremental", file, "master"], { cwd });
+function getFiles(cwd, ref) {
+  return execa("git", ["ls-tree", "-r", ref], { cwd });
 }
 
-export async function getBlame(cwd, file) {
-  const running = runBlame(cwd, file);
+function runBlame(cwd, file, ref) {
+  return execa("git", ["blame", "--incremental", file, ref], { cwd });
+}
+
+export async function getBlame(cwd, file, ref = "master") {
+  const running = runBlame(cwd, file, ref);
 
   const hashes = {};
   let currentHash;
@@ -68,12 +72,8 @@ export async function getBlame(cwd, file) {
   return mapped;
 }
 
-function getFiles(cwd) {
-  return execa("git", ["ls-tree", "-r", "master"], { cwd });
-}
-
-export async function listFiles(repository, onFile) {
-  const running = getFiles(repository);
+export async function listFiles(repository, onFile, ref = "master") {
+  const running = getFiles(repository, ref);
 
   for await (const line of chunksToLines(running.stdout)) {
     const separated = line.split(/\t/);

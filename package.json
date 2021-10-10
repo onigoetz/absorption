@@ -30,14 +30,14 @@
     "yargs": "^17.0.0"
   },
   "devDependencies": {
+    "@swissquote/crafty": "^1.16.0",
+    "@swissquote/crafty-preset-jest": "^1.16.0",
     "@swissquote/eslint-plugin-swissquote": "1.16.0",
-    "ava": "3.15.0",
-    "c8": "^7.10.0",
     "eslint": "^7.32.0"
   },
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "c8 --all --r text -r lcov ava --coverage --collectCoverageFrom=src/*",
+    "test": "NODE_OPTIONS=--experimental-vm-modules crafty --preset @swissquote/crafty-preset-jest test --coverage",
     "prepublishOnly": "yarn test",
     "postpublish": "git push && git push --tags"
   }

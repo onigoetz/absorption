@@ -11,7 +11,7 @@ import {
   loadFile,
   filePath,
   prepareWeights,
-  sortByLinesDesc,
+  sortByLinesDesc
 } from "./utils.js";
 import { listFiles } from "./git.js";
 import calculate from "./index.js";
@@ -29,12 +29,12 @@ function renderTable(header, columns, rows) {
       joinBody: colors.gray(`─`),
       joinLeft: ``,
       joinRight: ``,
-      joinJoin: colors.gray(`┼`),
+      joinJoin: colors.gray(`┼`)
     },
     drawHorizontalLine(index) {
       return index === 1;
     },
-    columns,
+    columns
   };
 
   return table([header].concat(rows), options);
@@ -51,25 +51,25 @@ function renderFresh(result, maxResults) {
       name,
       toPct(lines),
       toPct(freshLines),
-      toPct(fadingLines),
+      toPct(fadingLines)
     ]);
 
   const columns = {
     0: {
-      alignment: "left",
+      alignment: "left"
     },
     1: {
       alignment: "right",
-      width: 8,
+      width: 8
     },
     2: {
       alignment: "right",
-      width: 8,
+      width: 8
     },
     3: {
       alignment: "right",
-      width: 8,
-    },
+      width: 8
+    }
   };
 
   console.log(renderTable(["Name", "Total", "Fresh", "Fading"], columns, rows));
@@ -86,12 +86,12 @@ function renderLost(result, maxLostContributors) {
 
   const columns = {
     0: {
-      alignment: "left",
+      alignment: "left"
     },
     1: {
       alignment: "right",
-      width: 8,
-    },
+      width: 8
+    }
   };
 
   console.log(renderTable(["Name", "Total"], columns, rows));
@@ -120,11 +120,11 @@ function renderBigFiles(fileData) {
 
   const columns = {
     0: {
-      alignment: "left",
+      alignment: "left"
     },
     1: {
-      alignment: "right",
-    },
+      alignment: "right"
+    }
   };
 
   console.log(renderTable(["File", "Lines"], columns, rows));
@@ -139,7 +139,7 @@ function renderTitle(title) {
 function commandRepositoryConfig(config) {
   config.positional("repository", {
     describe: "The repository to scan",
-    type: "string",
+    type: "string"
   });
 }
 
@@ -149,7 +149,7 @@ yargs(hideBin(process.argv))
     "list-files <repository>",
     "List all files and their weights",
     commandRepositoryConfig,
-    async (argv) => {
+    async argv => {
       const repository = argv.repository;
       const weights = argv.weights ? await loadFile(argv.weights) : {};
       const withMedia = argv.withMedia;
@@ -166,7 +166,7 @@ yargs(hideBin(process.argv))
     ["calculate <repository>", "$0 <repository>"],
     "Calculate absorption",
     commandRepositoryConfig,
-    async (argv) => {
+    async argv => {
       const contributors = argv.contributors
         ? await loadFile(argv.contributors)
         : [];
@@ -232,40 +232,40 @@ yargs(hideBin(process.argv))
   )
   .option("json", {
     describe: "Output to a JSON file",
-    type: "string",
+    type: "string"
   })
   .option("threshold", {
     describe:
       "start with a number, followed by 'd' for days, 'w' for weeks, 'm' for months or 'y' for years (1y, 6m, 9w)",
     default: "1y",
-    type: "string",
+    type: "string"
   })
   .option("max-contributors", {
     describe: "Max number of active contributors",
     type: "integer",
-    default: 10,
+    default: 10
   })
   .option("max-lost-contributors", {
     describe: "Max number of lost contributors",
     type: "integer",
-    default: 10,
+    default: 10
   })
   .option("contributors", {
     describe: "Add complementary contributors data, through a JSON file",
-    type: "string",
+    type: "string"
   })
   .option("weights", {
     describe: "Change the weight of each file, through a JSON file",
-    type: "string",
+    type: "string"
   })
   .option("with-media", {
     describe: "Media files are ignored by default, this restores them",
     type: "boolean",
-    default: false,
+    default: false
   })
   .option("verbose", {
     type: "boolean",
-    default: false,
+    default: false
   })
   //.example("$0 calculate -f foo.js", "count the lines in the given file")
   .help("h")

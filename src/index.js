@@ -285,4 +285,4 @@ export default async function main(
     },
     fileData
   };
-};
+}

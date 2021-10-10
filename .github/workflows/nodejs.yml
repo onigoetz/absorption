@@ -28,9 +28,6 @@ jobs:
     - name: SonarCloud Scan
       if: github.repository == 'onigoetz/absorption' && github.event_name != 'pull_request'
       uses: sonarsource/sonarqube-scan-action@v1.0.0
-      with:
-        args: >
-          -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: https://sonarcloud.io

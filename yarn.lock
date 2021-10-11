@@ -649,7 +649,7 @@
     debug "^4.1.0"
     find-up "5.0.0"
 
-"@swissquote/crafty-preset-jest@^1.16.0":
+"@swissquote/crafty-preset-jest@1.16.0":
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty-preset-jest/-/crafty-preset-jest-1.16.0.tgz#f279aabedf68d06bb32621785ee4414cf7e8cb03"
   integrity sha512-ijY7q8Ug3yr6x+QQWBAHCjt1SmUUcs4QR5KX5IHzbKDwP6CLrP3Skpmj1o1X6FUwHmqr5AiIjMwBfMvrTMjH0Q==
@@ -660,7 +660,7 @@
     cherow "1.6.9"
     jest-cli "27.2.4"
 
-"@swissquote/crafty@^1.16.0":
+"@swissquote/crafty@1.16.0":
   version "1.16.0"
   resolved "https://registry.yarnpkg.com/@swissquote/crafty/-/crafty-1.16.0.tgz#e13b89af59d41b4eff629e8ff2eee53bff997cca"
   integrity sha512-QvEE90RDLOHo7YEcLEqLJZTPqos4DDwzB62lCMuLT/OuV9uqID1FQJej/8AOC83uAnJmK/ilAhRTG7rQIJiNrw==
@@ -1877,7 +1877,7 @@ eslint-visitor-keys@^2.0.0, eslint-visitor-keys@^2.1.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.1.0.tgz#f65328259305927392c938ed44eb0a5c9b2bd303"
   integrity sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==
 
-eslint@^7.32.0:
+eslint@7.32.0:
   version "7.32.0"
   resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.32.0.tgz#c6d328a14be3fb08c8d1d21e12c02fdb7a2a812d"
   integrity sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==

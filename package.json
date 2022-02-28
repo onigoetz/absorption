@@ -30,10 +30,10 @@
     "yargs": "^17.0.0"
   },
   "devDependencies": {
-    "@swissquote/crafty": "1.18.1",
-    "@swissquote/crafty-preset-jest": "1.18.1",
-    "@swissquote/eslint-plugin-swissquote": "1.18.1",
-    "eslint": "8.9.0"
+    "@swissquote/crafty": "1.18.4",
+    "@swissquote/crafty-preset-jest": "1.18.4",
+    "@swissquote/eslint-plugin-swissquote": "1.18.4",
+    "eslint": "8.10.0"
   },
   "scripts": {
     "lint": "eslint src --fix",

@@ -894,37 +894,37 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@swissquote/crafty-commons@1.19.0":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@swissquote/crafty-commons/-/crafty-commons-1.19.0.tgz#5991a1803992a01264469860060880e6bfb9772f"
-  integrity sha512-ruO/tdBvAZ13pTL95U9fpzaNp0QnDBmi/A8vcjuzDBVtb7EgNyNytxJ0ZgnUXCVl4R7WNL5MjCZhlNwtgpz/iw==
+"@swissquote/crafty-commons@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@swissquote/crafty-commons/-/crafty-commons-1.19.1.tgz#f39fc124aab073315561f2abeb2fcca79d9f19c7"
+  integrity sha512-bQsN71vP7/Az8p0Q6EQV19Yel9k5ZCYcseTdXRRGISZSJWVPd8h/EonYQxEGpVQKhsv0F8Q9w4pz5ZJf9UQPOg==
   dependencies:
     caniuse-lite "^1.0.30001319"
 
-"@swissquote/crafty-preset-jest@1.19.0":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@swissquote/crafty-preset-jest/-/crafty-preset-jest-1.19.0.tgz#127baca08abb1e8f204bd73f5aa4853fb6389f9d"
-  integrity sha512-tFOB3Dlb92GjbIUWKiY9u1ZKMGYe/3MR4gUjr+PtrN5NjJg03JZyo8gyecUcmp20CCmQLg4WidZU3vEYoZQQaA==
+"@swissquote/crafty-preset-jest@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@swissquote/crafty-preset-jest/-/crafty-preset-jest-1.19.1.tgz#beac3f1cc77d8d763715f6b81dcec027d2b16e63"
+  integrity sha512-GGDRkTFeP6CZw0RUWHvEHn1nfOw6vPLeZwoylAU2rAtCNDoTnB6jWq56ItOVyOYjS/evWBJD8HyLF5m10B7bKQ==
   dependencies:
     "@babel/core" "7.17.9"
     "@babel/plugin-transform-modules-commonjs" "7.17.9"
     jest-cli "27.5.1"
 
-"@swissquote/crafty@1.19.0":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@swissquote/crafty/-/crafty-1.19.0.tgz#a5bc9a3cf800d973424800fd7e04ee50e6a00b87"
-  integrity sha512-4zLkKcUQlTA6+gGmPnj5I7KdGnrueqif0rc0tf7Uxub5KOMkU4wQGxjq9D6gHJqVRCpJREnnwWaWaJ8XhdwsPg==
+"@swissquote/crafty@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@swissquote/crafty/-/crafty-1.19.1.tgz#81dba6a769baa6ca808897d2369f7aa1c962dd2a"
+  integrity sha512-Y0i7IkZt8RWhKMR223l7HVDLg+I3BqCeQSht50WyZBaIsXYw4dvL6wBdvQVvDNFeb3Qx6+c11ztKmzXl5OP9mg==
   dependencies:
-    "@swissquote/crafty-commons" "1.19.0"
+    "@swissquote/crafty-commons" "1.19.1"
   optionalDependencies:
     fsevents "~2.3.2"
 
-"@swissquote/eslint-plugin-swissquote@1.19.0":
-  version "1.19.0"
-  resolved "https://registry.yarnpkg.com/@swissquote/eslint-plugin-swissquote/-/eslint-plugin-swissquote-1.19.0.tgz#826900ddd200f01d88a16d77c9d435ea320e1c82"
-  integrity sha512-XPmWJu6roTSCgtsttGskx+sS9SkJNO1yQB5UWy/gz+r4KQ+vuXOW6S3kJhYAv2LAVnY81usDU0Md5Q8wlOQFwg==
+"@swissquote/eslint-plugin-swissquote@1.19.1":
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/@swissquote/eslint-plugin-swissquote/-/eslint-plugin-swissquote-1.19.1.tgz#302b502b24a4d3ffee74873fb1f5e29ef3045533"
+  integrity sha512-xqSQfimoIcTU+A5jtwPCtN5Xhzs5vkCbaI1B6/Y354hNnhTJNt3YQWQa/Bda8KA3cODPEvS+l9ryxXTAR/appg==
   dependencies:
-    "@swissquote/crafty-commons" "1.19.0"
+    "@swissquote/crafty-commons" "1.19.1"
     prettier "1.19.1"
     typescript "4.6.3"
 

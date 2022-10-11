@@ -7,7 +7,7 @@ let mockData = ``;
 
 jest.unstable_mockModule("execa", async () => {
   return {
-    default: jest.fn().mockImplementation(() => {
+    execa: jest.fn().mockImplementation(() => {
       // Randomly split string to make it more realistic to stream
       const items = [];
       let j = 0;
@@ -33,7 +33,7 @@ jest.unstable_mockModule("execa", async () => {
   };
 });
 
-const { default: execa } = await import("execa");
+const { execa } = await import("execa");
 const { getBlame } = await import("../src/git.js");
 
 describe("getBlame", () => {

@@ -1,4 +1,4 @@
-import execa from "execa";
+import { execa } from "execa";
 import { chunksToLines, getBeginningOfMonth } from "./utils.js";
 
 const hashRegex = /^([0-9a-f]{40})\s+(\d+)\s+(\d+)\s+(\d+)/;

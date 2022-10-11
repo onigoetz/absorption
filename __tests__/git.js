@@ -502,15 +502,15 @@ describe("getBlame", () => {
     const blame = await getBlame("dir", "src/bin.js");
 
     expect(blame).toMatchInlineSnapshot(`
-      Object {
-        "1583017200000": Object {
+      {
+        "1583017200000": {
           "Sergio Mendolia <hidden@github.com>": 15,
           "Stéphane Goetz <onigoetz@onigoetz.ch>": 212,
         },
-        "1619820000000": Object {
+        "1619820000000": {
           "Stéphane Goetz <onigoetz@onigoetz.ch>": 18,
         },
-        "1633039200000": Object {
+        "1633039200000": {
           "Stéphane Goetz <onigoetz@onigoetz.ch>": 28,
         },
       }

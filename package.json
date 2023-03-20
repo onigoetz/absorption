@@ -33,7 +33,7 @@
     "@swissquote/crafty": "1.21.1",
     "@swissquote/crafty-preset-jest": "1.21.1",
     "@swissquote/eslint-plugin-swissquote": "1.21.1",
-    "eslint": "8.35.0"
+    "eslint": "8.36.0"
   },
   "scripts": {
     "lint": "eslint src --fix",

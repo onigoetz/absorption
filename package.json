@@ -14,15 +14,15 @@
     "absorption": "./src/bin.js"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "cache-manager": "^5.0.0",
     "cache-manager-fs-hash": "^1.0.0",
     "cli-progress": "^3.6.0",
     "colors": "^1.4.0",
-    "execa": "^7.0.0",
-    "find-cache-dir": "^3.3.0",
+    "execa": "^8.0.0",
+    "find-cache-dir": "^5.0.0",
     "hard-rejection": "^2.1.0",
     "micromatch": "^4.0.2",
     "p-queue": "^7.1.0",
@@ -30,14 +30,14 @@
     "yargs": "^17.0.0"
   },
   "devDependencies": {
-    "@swissquote/crafty": "1.22.0",
-    "@swissquote/crafty-preset-jest": "1.22.0",
-    "@swissquote/eslint-plugin-swissquote": "1.22.0",
-    "eslint": "8.38.0"
+    "@swissquote/crafty": "1.22.3",
+    "@swissquote/eslint-plugin-swissquote": "1.22.3",
+    "c8": "^8.0.1",
+    "eslint": "8.48.0"
   },
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "TZ=Europe/Zurich NODE_OPTIONS=--experimental-vm-modules crafty --preset @swissquote/crafty-preset-jest test --coverage",
+    "test": "c8 --reporter=text --reporter=html node --test  __tests__/*.js",
     "prepublishOnly": "yarn test",
     "postpublish": "git push && git push --tags"
   }

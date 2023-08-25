@@ -1,13 +1,14 @@
-/* global describe, it, expect, jest */
+import { it, describe, mock } from 'node:test';
+import assert from 'node:assert/strict';
 
-import { Readable } from "stream";
-import { jest } from "@jest/globals";
+import { Readable } from "node:stream";
+import { getBlame } from "../src/git.js";
 
 let mockData = ``;
 
-jest.unstable_mockModule("execa", async () => {
-  return {
-    execa: jest.fn().mockImplementation(() => {
+const execa = mock.fn()
+
+execa.mock.mockImplementation(() => {
       // Randomly split string to make it more realistic to stream
       const items = [];
       let j = 0;
@@ -29,12 +30,7 @@ jest.unstable_mockModule("execa", async () => {
       stdout.push(null);
 
       return { stdout };
-    })
-  };
-});
-
-const { execa } = await import("execa");
-const { getBlame } = await import("../src/git.js");
+    });
 
 describe("getBlame", () => {
   it("should Get Blame Data", async () => {
@@ -499,9 +495,10 @@ describe("getBlame", () => {
     341b5b57b5944aefec867162a7e9c14a1e6b008f 41 269 3
     filename src/bin.js`.replace(/\n\s+/g, "\n");
 
-    const blame = await getBlame("dir", "src/bin.js");
+    const blame = await getBlame(execa, "dir", "src/bin.js");
 
-    expect(blame).toMatchInlineSnapshot(`
+    assert.deepStrictEqual(
+      blame, 
       {
         "1583017200000": {
           "Sergio Mendolia <hidden@github.com>": 15,
@@ -514,11 +511,14 @@ describe("getBlame", () => {
           "Stéphane Goetz <onigoetz@onigoetz.ch>": 28,
         },
       }
-    `);
-    expect(execa).toHaveBeenCalledWith(
+    );
+    
+    assert.deepStrictEqual(execa.mock.calls[0].arguments,
+      [
       "git",
       ["blame", "--incremental", "src/bin.js", "master"],
       { cwd: "dir" }
+      ]
     );
   });
 });

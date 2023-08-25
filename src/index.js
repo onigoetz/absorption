@@ -1,3 +1,4 @@
+import { execa } from "execa";
 import cacheInstance from "./cache.js";
 import { getBlame, listFiles, getRemoteOrigin } from "./git.js";
 import { sortByLinesDesc } from "./utils.js";
@@ -213,7 +214,7 @@ export default async function main(
   let repositoryCacheKey = repository;
   try {
     // Get the origin url as cache key, allows for better caching, instead of relying on absolute or relative paths
-    repositoryCacheKey = await getRemoteOrigin(repository);
+    repositoryCacheKey = await getRemoteOrigin(execa, repository);
   } catch (e) {
     if (verbose) {
       // It's not that important if this fails, we can ignore it, unless we're in verbose mode
@@ -221,7 +222,7 @@ export default async function main(
     }
   }
 
-  await listFiles(repository, (filename, hash) => {
+  await listFiles(execa, repository, (filename, hash) => {
     const weight = getWeight(filename);
 
     if (weight === 0) {
@@ -235,7 +236,7 @@ export default async function main(
     const cacheKey = `${repositoryCacheKey}:${hash}:${filename}:v2`;
     queue.add(async () => {
       const newData = await cacheInstance.wrap(cacheKey, () =>
-        getBlame(repository, filename)
+        getBlame(execa, repository, filename)
       );
 
       fileData[filename] = newData;

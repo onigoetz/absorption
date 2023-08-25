@@ -37,7 +37,7 @@
   },
   "scripts": {
     "lint": "eslint src --fix",
-    "test": "c8 --reporter=text --reporter=html node --test  __tests__/*.js",
+    "test": "TZ=Europe/Zurich c8 --reporter=text --reporter=html node --test  __tests__/*.js",
     "prepublishOnly": "yarn test",
     "postpublish": "git push && git push --tags"
   }

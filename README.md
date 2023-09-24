@@ -1,6 +1,11 @@
 # Absorption
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/onigoetz/absorption/Node.js%20CI?style=flat-square)
+[![Latest Version](https://img.shields.io/github/release/onigoetz/absorption.svg?style=flat-square)](https://github.com/onigoetz/absorption/releases)
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://github.com/onigoetz/absorption/blob/master/LICENSE.md)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/onigoetz/absorption/nodejs.yml?style=flat-square&logo=github)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=onigoetz_absorption&metric=coverage)](https://sonarcloud.io/dashboard?id=onigoetz_absorption)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=onigoetz_absorption&metric=alert_status)](https://sonarcloud.io/dashboard?id=onigoetz_absorption)
+[![NPM Downloads](https://img.shields.io/npm/dw/absorption?style=flat-square&logo=npm)](https://www.npmjs.com/package/absorption)
 
 ## What is absorption ?
 

@@ -107,28 +107,28 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@swissquote/crafty-commons@1.24.0":
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/@swissquote/crafty-commons/-/crafty-commons-1.24.0.tgz#459b746ef3eef7f85ad9aeee14ba9264c149e450"
-  integrity sha512-/IbjQwJGuGBVDxc3Ic3BwXbE49UVfi0C9ptp5Gk6sM7EQqXZ54iUURgE4plneMJbUYp83YF2nPRwGPQ+9WgtZg==
+"@swissquote/crafty-commons@1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@swissquote/crafty-commons/-/crafty-commons-1.25.0.tgz#33c4104140e976265f51ac4d48ff787d9c07d29c"
+  integrity sha512-uwjPeUpyBtzEkpXJhxlZFn8zO8eLAmiaN2nLlZwg0FLNe5yNP2JkFc+Dqk7qwecB+VgEHMfHneEwJmEV46/5PA==
   dependencies:
-    caniuse-lite "^1.0.30001570"
+    caniuse-lite "^1.0.30001591"
 
-"@swissquote/crafty@1.24.0":
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/@swissquote/crafty/-/crafty-1.24.0.tgz#d8e5a006d529170c1ebb499882a48c5f2b92e21f"
-  integrity sha512-9cpcZw+oxIhxSJY4P9cNI2FGql5wU3jobfXs8sVZOqSEmZk+8G8utmp+5WvdKcduEdkuDJELvBwYJLOYysjTJA==
+"@swissquote/crafty@1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@swissquote/crafty/-/crafty-1.25.0.tgz#0623a5b8122b935f2ddb8083df0fdcabbe7dc135"
+  integrity sha512-Q2w6GOViXY8T6OjDUuJjnK1pah1/nnpPL4ID1IsF068CRkDtYPnv1z9sCYhKeHvFjYYYr2JCmUQmqY9OCDIl2A==
   dependencies:
-    "@swissquote/crafty-commons" "1.24.0"
+    "@swissquote/crafty-commons" "1.25.0"
   optionalDependencies:
     fsevents "~2.3.3"
 
-"@swissquote/eslint-plugin-swissquote@1.24.0":
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/@swissquote/eslint-plugin-swissquote/-/eslint-plugin-swissquote-1.24.0.tgz#e8b5e832a2b3289f1cdf755dfebb273c2ecd2255"
-  integrity sha512-nsxKBhsv5MG6juzhmZ4OOnnwRxi8wF+wJnExW1Ieg1d7Xju6cfb9PKnvbcD6zNZWnvwlQuPtyRCDatTkr8ulIg==
+"@swissquote/eslint-plugin-swissquote@1.25.0":
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/@swissquote/eslint-plugin-swissquote/-/eslint-plugin-swissquote-1.25.0.tgz#a8061eb057376ec5d71c48fad9657ed147f16af2"
+  integrity sha512-dqq6ky/T57vfuBrGqdMnj+VVfBjiowOFiwXEMOcMhvA8hE9+O+YRDqcuAwoCDFRX1MdpHbJGAvT8NG8z9ZH7Nw==
   dependencies:
-    "@swissquote/crafty-commons" "1.24.0"
+    "@swissquote/crafty-commons" "1.25.0"
     typescript "5.3.3"
 
 "@types/istanbul-lib-coverage@^2.0.1":
@@ -251,10 +251,10 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-caniuse-lite@^1.0.30001570:
-  version "1.0.30001570"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001570.tgz#b4e5c1fa786f733ab78fc70f592df6b3f23244ca"
-  integrity sha512-+3e0ASu4sw1SWaoCtvPeyXp+5PsjigkSt8OXZbF9StH5pQWbxEjLAZE3n8Aup5udop1uRiKA7a4utUk/uoSpUw==
+caniuse-lite@^1.0.30001591:
+  version "1.0.30001593"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001593.tgz#7cda1d9e5b0cad6ebab4133b1f239d4ea44fe659"
+  integrity sha512-UWM1zlo3cZfkpBysd7AS+z+v007q9G1+fLTUU42rQnY6t2axoogPW/xol6T7juU5EUoOhML4WgBIdG+9yYqAjQ==
 
 chalk@^4.0.0:
   version "4.1.2"

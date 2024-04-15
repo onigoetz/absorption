@@ -30,7 +30,7 @@ jobs:
         CI: true
     - name: SonarCloud Scan
       if: github.repository == 'onigoetz/absorption' && github.event_name != 'pull_request'
-      uses: sonarsource/sonarqube-scan-action@69c1a75940dec6249b86dace6b630d3a2ae9d2a7 # v2.0.1
+      uses: sonarsource/sonarqube-scan-action@53c3e3207fe4b8d52e2f1ac9d6eb1d2506f626c0 # v2.0.2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

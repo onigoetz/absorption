@@ -231,9 +231,9 @@ c8@^9.0.0:
     yargs-parser "^21.1.1"
 
 cache-manager-fs-hash@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/cache-manager-fs-hash/-/cache-manager-fs-hash-1.0.0.tgz#9a3f3fa239c48c54fc6b00575032b72c07dcad99"
-  integrity sha512-fK2vEAhWh7IAzBP+JwUEJkng0OPOxw3ji86SjQS5SWdLx2Cytku6xFNoQK32pedtuae/wBl/jA/X4abiAYHS/Q==
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/cache-manager-fs-hash/-/cache-manager-fs-hash-1.1.0.tgz#045ed9278977d776a2e4851b2d87440b6d77bd79"
+  integrity sha512-5D4Y2cnioxiy830a7QrWtRmsrfZCW1z3BOIZ0jessuFHIj/8e8mI4MsDYTaEz6aPn0EC4YAWWtQGJVsqccXW/w==
   dependencies:
     lockfile "^1.0.4"
 

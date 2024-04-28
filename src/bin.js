@@ -154,12 +154,17 @@ yargs(hideBin(process.argv))
       const weights = argv.weights ? await loadFile(argv.weights) : {};
       const withMedia = argv.withMedia;
       const withLockfiles = argv.withLockfiles;
+      const branch = argv.branch;
 
       const getWeight = prepareWeights(weights, withMedia, withLockfiles);
 
-      await listFiles(repository, (filename, hash) => {
-        console.log(` ${filename} ${getWeight(filename)}`);
-      });
+      await listFiles(
+        repository,
+        (filename, hash) => {
+          console.log(` ${filename} ${getWeight(filename)}`);
+        },
+        branch
+      );
     }
   )
   .command(
@@ -178,6 +183,7 @@ yargs(hideBin(process.argv))
       const verbose = argv.verbose;
       const maxContributors = argv.maxContributors;
       const maxLostContributors = argv.maxLostContributors;
+      const branch = argv.branch;
 
       const result = await calculate(
         contributors,
@@ -185,8 +191,7 @@ yargs(hideBin(process.argv))
         threshold,
         repository,
         verbose,
-        maxContributors,
-        maxLostContributors
+        branch
       );
 
       if (argv.json) {
@@ -207,14 +212,14 @@ yargs(hideBin(process.argv))
 
       renderTitle("Fresh/Fading knowledge");
       if (result.knowledge.fresh.length) {
-        renderFresh(result, argv.maxContributors);
+        renderFresh(result, maxContributors);
       } else {
         console.log("It seems this repository has no fresh knowledge.");
       }
 
       renderTitle("Lost knowledge");
       if (result.knowledge.lost.length) {
-        renderLost(result, argv.maxLostContributors);
+        renderLost(result, maxLostContributors);
       } else {
         console.log(
           "It seems this repository has no lost knowledge, congratulations !"
@@ -262,6 +267,11 @@ yargs(hideBin(process.argv))
     describe: "Media files are ignored by default, this restores them",
     type: "boolean",
     default: false
+  })
+  .option("branch", {
+    describe: "The branch to scan",
+    type: "string",
+    default: "master"
   })
   .option("verbose", {
     type: "boolean",

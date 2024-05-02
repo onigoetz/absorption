@@ -212,7 +212,7 @@ yargs(hideBin(process.argv))
         console.log("It seems this repository has no fresh knowledge.");
       }
 
-      renderTitle("List");
+      renderTitle("Lost knowledge");
       if (result.knowledge.lost.length) {
         renderLost(result, argv.maxLostContributors);
       } else {

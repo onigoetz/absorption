@@ -48,6 +48,7 @@ You can then use the options of the command to fine tune the results.
 
 - `--threshold 6m` After what delay do you consider the knowledge lost. starts with a number, followed by 'd' for days, 'w' for weeks, 'm' for months or 'y' for years (1y, 6m, 9w). Defaults to one year.
 - `--contributors contributors.json` Feed data on contributors, see below for that file's format.
+- `--weights weights.json` Feed data on file weights, see below for that file's format.
 - `--with-media` Media files (images, audio and video) are excluded by default from the scan, setting `--with-media` will include them.
 - `--with-lockfiles` Lockfiles (`package-lock.json`, `yarn.lock`, `composer.lock`) are excluded by default from the scan, setting `--with-lockfiles` will include them.
 - `--verbose` Output lots of debug information
@@ -72,7 +73,7 @@ Fresh/Fading knowledge
  Vitalii Shapovalov │   0.14 % │   0.14 % │   0.00 % 
 
 
-List
+Lost knowledge
 
  Name                                │    Total 
 ─────────────────────────────────────┼──────────

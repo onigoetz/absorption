@@ -28,13 +28,12 @@
     "yargs": "^17.0.0"
   },
   "devDependencies": {
-    "@swissquote/crafty": "1.25.0",
-    "@swissquote/eslint-plugin-swissquote": "1.25.0",
-    "c8": "^9.0.0",
-    "eslint": "8.57.0"
+    "@biomejs/biome": "1.7.0",
+    "c8": "^9.0.0"
   },
   "scripts": {
-    "lint": "eslint src",
+    "format": "biome format src",
+    "check": "biome check src",
     "test": "TZ=Europe/Zurich c8 --reporter=text --reporter=html node --test  __tests__/*.js",
     "prepublishOnly": "yarn test",
     "postpublish": "git push && git push --tags"

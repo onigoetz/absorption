@@ -4,7 +4,7 @@ import findCacheDir from "find-cache-dir";
 const store = DiskStore.create({
   ttl: 60 * 60 * 24 * 90, // 3 months lifetime (in seconds)
   path: findCacheDir({ name: "absorption", create: true }),
-  subdirs: true
+  subdirs: true,
 });
 
 export default {
@@ -29,5 +29,5 @@ export default {
   },
   reset() {
     return store.reset();
-  }
+  },
 };

@@ -12,13 +12,13 @@ import { cpus } from "os";
 const maxProcess = Math.min(5, Math.max(1, Math.floor(cpus().length / 2)));
 
 function appendBlame(data, moreData) {
-  Object.keys(moreData).forEach(dateKey => {
+  Object.keys(moreData).forEach((dateKey) => {
     if (!data.hasOwnProperty(dateKey)) {
       data[dateKey] = moreData[dateKey];
       return;
     }
 
-    Object.keys(moreData[dateKey]).forEach(authorKey => {
+    Object.keys(moreData[dateKey]).forEach((authorKey) => {
       if (!data[dateKey].hasOwnProperty(authorKey)) {
         data[dateKey][authorKey] = moreData[dateKey][authorKey];
         return;
@@ -63,13 +63,13 @@ function computeAbsorption(threshold, contributors, data, verbose) {
     return acc;
   }, {});
 
-  Object.keys(data).forEach(key => {
+  Object.keys(data).forEach((key) => {
     const storeInto = parseInt(key, 10) < threshold ? before : after;
 
-    Object.keys(data[key]).forEach(who => {
+    Object.keys(data[key]).forEach((who) => {
       let name = who;
       const contributor = contributors.find(
-        c => c.identities.indexOf(who) > -1
+        (c) => c.identities.indexOf(who) > -1,
       );
       if (contributor) {
         // Ignore bots from data
@@ -94,13 +94,13 @@ function computeAbsorption(threshold, contributors, data, verbose) {
   const levels = {
     fresh: { total: 0 },
     fading: { total: 0 },
-    lost: { total: 0 }
+    lost: { total: 0 },
   };
 
   // Code that was contributed more recently than the threshold is considered active
   // Except if the contributor has been explicitly set as "active: false"
   // In that case, it's considered lost
-  Object.keys(after).forEach(who => {
+  Object.keys(after).forEach((who) => {
     const level = getLevelAfter(contributorByName, who);
     levels[level][who] = after[who];
     levels[level].total += after[who];
@@ -110,7 +110,7 @@ function computeAbsorption(threshold, contributors, data, verbose) {
   // If it was contributed by an active contributor, it is considered fading
   // If it was contributed by a contributor explicitly set as "active: true"
   // it will be set as fading even if the contributor didn't contribute more recently.
-  Object.keys(before).forEach(who => {
+  Object.keys(before).forEach((who) => {
     const level = getLevelBefore(contributorByName, levels.fresh, who);
     if (!levels[level].hasOwnProperty(who)) {
       levels[level][who] = 0;
@@ -128,7 +128,7 @@ function toPercentage(current, total) {
 
 function combineFreshAndFading(fresh, fading) {
   const combined = {};
-  Object.keys(fresh).forEach(who => {
+  Object.keys(fresh).forEach((who) => {
     if (who === "total") {
       return;
     }
@@ -136,11 +136,11 @@ function combineFreshAndFading(fresh, fading) {
       name: who,
       lines: fresh[who],
       freshLines: fresh[who],
-      fadingLines: 0
+      fadingLines: 0,
     };
   });
 
-  Object.keys(fading).forEach(who => {
+  Object.keys(fading).forEach((who) => {
     if (who === "total") {
       return;
     }
@@ -149,7 +149,7 @@ function combineFreshAndFading(fresh, fading) {
         name: who,
         lines: 0,
         freshLines: 0,
-        fadingLines: 0
+        fadingLines: 0,
       };
     }
     combined[who].lines += fading[who];
@@ -161,10 +161,10 @@ function combineFreshAndFading(fresh, fading) {
 
 function rebalance(newData, weight) {
   const final = {};
-  Object.keys(newData).forEach(timestamp => {
+  Object.keys(newData).forEach((timestamp) => {
     final[timestamp] = {};
 
-    Object.keys(newData[timestamp]).forEach(who => {
+    Object.keys(newData[timestamp]).forEach((who) => {
       final[timestamp][who] = newData[timestamp][who] * weight;
     });
   });
@@ -178,20 +178,20 @@ export default async function main(
   threshold,
   repository,
   verbose,
-  branch
+  branch,
 ) {
   let queueMaxSize = 0;
   const queue = new Queue({ concurrency: maxProcess });
   let progress = {
     stop() {
       // Fake progress
-    }
+    },
   };
   if (!verbose) {
     progress = new cliProgress.SingleBar({
       format: "Scanning {bar} | {percentage}% | {value}/{total} files",
       barCompleteChar: "\u2588",
-      barIncompleteChar: "\u2591"
+      barIncompleteChar: "\u2591",
     });
 
     queue.on("add", () => {
@@ -238,7 +238,7 @@ export default async function main(
       const cacheKey = `${repositoryCacheKey}:${hash}:${filename}:v2`;
       queue.add(async () => {
         const newData = await cacheInstance.wrap(cacheKey, () =>
-          getBlame(execa, repository, filename, branch)
+          getBlame(execa, repository, filename, branch),
         );
 
         fileData[filename] = newData;
@@ -248,7 +248,7 @@ export default async function main(
         appendBlame(data, balanced);
       });
     },
-    branch
+    branch,
   );
 
   await queue.onIdle();
@@ -258,7 +258,7 @@ export default async function main(
     threshold,
     contributors,
     data,
-    verbose
+    verbose,
   );
 
   const totalLines = fresh.total + fading.total + lost.total;
@@ -275,21 +275,21 @@ export default async function main(
     categories: {
       fresh,
       fading,
-      lost
+      lost,
     },
     absorption: {
       fresh: freshPercentage,
       fading: fadingPercentage,
-      lost: lostPercentage
+      lost: lostPercentage,
     },
     knowledge: {
       fresh: sortByLinesDesc(freshKnowledge),
       lost: sortByLinesDesc(
         Object.entries(lost)
-          .filter(entry => entry[0] !== "total")
-          .map(([name, lines]) => ({ name, lines }))
-      )
+          .filter((entry) => entry[0] !== "total")
+          .map(([name, lines]) => ({ name, lines })),
+      ),
     },
-    fileData
+    fileData,
   };
 }

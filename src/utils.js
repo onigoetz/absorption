@@ -42,7 +42,7 @@ const thresholdMultipliers = {
   d: 1,
   m: 30,
   w: 7,
-  y: 365
+  y: 365,
 };
 
 export function getDuration(threshold) {
@@ -50,7 +50,7 @@ export function getDuration(threshold) {
 
   if (!m) {
     throw new Error(
-      `Invalid threshold '${threshold}'. Valid values start with a number, followed by 'd' for days, 'w' for weeks, 'm' for months or 'y' for years`
+      `Invalid threshold '${threshold}'. Valid values start with a number, followed by 'd' for days, 'w' for weeks, 'm' for months or 'y' for years`,
     );
   }
 
@@ -73,7 +73,7 @@ export async function loadFile(file) {
   if (/\.json$/.test(file)) {
     return fs.promises
       .readFile(resolvedPath, { encoding: "UTF-8" })
-      .then(content => JSON.parse(content));
+      .then((content) => JSON.parse(content));
   }
 
   const imported = await import(resolvedPath);
@@ -91,13 +91,13 @@ const mediaPatterns = [
   // Audio
   "**/*.{3gp,aa,aac,aax,act,aiff,alac,amr,ape,au,awb,dct,dss,dvf,flac,gsm,iklax,ivs,m4a,m4b,mmf,mp3,mpc,msv,nmf,nsf,ogg,oga,mogg,opus,ra,rm,raw,rf64,sln,tta,voc,vox,wav,wma,wv,8svx,cda}",
   // Video
-  "**/*.{webm,mkv,flv,vob,ogv,drc,gifv,mng,avi,mov,qt,wmv,yuv,rmvb,asf,amv,mp4,m4p,m4v,mpg,mp2,mpeg,mpv,m2v,m4v,svi,3g2,mxf,roq,nsv,aa}"
+  "**/*.{webm,mkv,flv,vob,ogv,drc,gifv,mng,avi,mov,qt,wmv,yuv,rmvb,asf,amv,mp4,m4p,m4v,mpg,mp2,mpeg,mpv,m2v,m4v,svi,3g2,mxf,roq,nsv,aa}",
 ];
 
 const lockfilePatterns = [
   "**/package-lock.json",
   "**/yarn.lock",
-  "**/composer.lock"
+  "**/composer.lock",
 ];
 
 export function prepareWeights(weights, withMedia, withLockfiles) {
@@ -119,13 +119,13 @@ export function prepareWeights(weights, withMedia, withLockfiles) {
 
   const methods = Object.entries(weights).map(([glob, weight]) => [
     mm.matcher(glob),
-    weight
+    weight,
   ]);
 
   // Add a default method with a weight of 1
   methods.push([() => true, 1]);
 
-  return file => methods.find(([fn]) => fn(file))[1];
+  return (file) => methods.find(([fn]) => fn(file))[1];
 }
 
 export function sortByLinesDesc(elements) {

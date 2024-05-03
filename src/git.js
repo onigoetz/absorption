@@ -34,7 +34,7 @@ export async function getBlame(execa, cwd, file, ref = "master") {
           author: "",
           mail: "",
           time: "",
-          tz: ""
+          tz: "",
         };
       }
 

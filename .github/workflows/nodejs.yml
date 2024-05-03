@@ -26,7 +26,7 @@ jobs:
     - run: yarn install
     - run: yarn check
     - run: yarn format
-    - run: yarn test
+    - run: yarn test:ci
       env:
         CI: true
     - name: SonarCloud Scan

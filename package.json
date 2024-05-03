@@ -35,8 +35,6 @@
     "format": "biome format src",
     "check": "biome check src",
     "test": "TZ=Europe/Zurich c8 node --test  __tests__/*.js",
-    "test:ci": "TZ=Europe/Zurich c8 -r lcov -r text node --test  __tests__/*.js",
-    "prepublishOnly": "yarn test",
-    "postpublish": "git push && git push --tags"
+    "test:ci": "TZ=Europe/Zurich c8 -r lcov -r text node --test  __tests__/*.js"
   }
 }

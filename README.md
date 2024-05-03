@@ -55,6 +55,7 @@ You can then use the options of the command to fine tune the results.
 - `--json file.json` Output the raw data to a json file. (used in conjunction with `--verbose` will output raw data per file as well)
 - `--max-contributors 10` Allows to customize the number of active contributors displayed in the table (default: 10)
 - `--max-lost-contributors 10` Allows to customize the number of lost contributors displayed in the list (default: 10)
+- `--branch` The branch of repository to scan (default: master)
 
 
 A more advanced example :

@@ -10,9 +10,7 @@
   ],
   "type": "module",
   "main": "./src/index.js",
-  "bin": {
-    "absorption": "./src/bin.js"
-  },
+  "bin": "./src/bin.js",
   "engines": {
     "node": ">=18.0.0"
   },

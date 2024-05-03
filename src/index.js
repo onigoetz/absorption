@@ -178,8 +178,7 @@ export default async function main(
   threshold,
   repository,
   verbose,
-  maxContributors,
-  maxLostContributors
+  branch
 ) {
   let queueMaxSize = 0;
   const queue = new Queue({ concurrency: maxProcess });
@@ -222,30 +221,35 @@ export default async function main(
     }
   }
 
-  await listFiles(execa, repository, (filename, hash) => {
-    const weight = getWeight(filename);
+  await listFiles(
+    execa,
+    repository,
+    (filename, hash) => {
+      const weight = getWeight(filename);
 
-    if (weight === 0) {
-      if (verbose) {
-        console.log("Ignoring file", filename);
+      if (weight === 0) {
+        if (verbose) {
+          console.log("Ignoring file", filename);
+        }
+
+        return;
       }
 
-      return;
-    }
+      const cacheKey = `${repositoryCacheKey}:${hash}:${filename}:v2`;
+      queue.add(async () => {
+        const newData = await cacheInstance.wrap(cacheKey, () =>
+          getBlame(execa, repository, filename, branch)
+        );
 
-    const cacheKey = `${repositoryCacheKey}:${hash}:${filename}:v2`;
-    queue.add(async () => {
-      const newData = await cacheInstance.wrap(cacheKey, () =>
-        getBlame(execa, repository, filename)
-      );
+        fileData[filename] = newData;
 
-      fileData[filename] = newData;
+        const balanced = rebalance(newData, weight);
 
-      const balanced = rebalance(newData, weight);
-
-      appendBlame(data, balanced);
-    });
-  });
+        appendBlame(data, balanced);
+      });
+    },
+    branch
+  );
 
   await queue.onIdle();
   progress.stop();

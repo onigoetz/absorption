@@ -30,7 +30,7 @@ jobs:
       env:
         CI: true
     - name: SonarCloud Scan
-      uses: sonarsource/sonarqube-scan-action@540792c588b5c2740ad2bb4667db5cd46ae678f2 # v2.2.0
+      uses: sonarsource/sonarqube-scan-action@aecaf43ae57e412bd97d70ef9ce6076e672fe0a9 # v2.3.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

@@ -197,9 +197,9 @@ cache-manager-fs-hash@^2.0.0:
     lockfile "^1.0.4"
 
 cache-manager@^5.0.0:
-  version "5.7.1"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.7.1.tgz#3a88673be547a13dc47a2fb12d0aa11710b7a481"
-  integrity sha512-dONlk3HCRelyxH9ctcXBgFihKmtSdudc9H0E39pBQeUaNcBJV3vcmcvifRUGqbeKk+uWCQpAts3uvnj+79Ebrg==
+  version "5.7.3"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-5.7.3.tgz#17ae136c608a90f169559c489c4ab91ba1892cdf"
+  integrity sha512-Vp2gd2aDm/MXdEWD0FLdOflvcVj4rdJ1FFmPUeOKq+fuL7MEUcezbTWxQmVB1TTN5Ig92CabMfi5z+HyQwVg9A==
   dependencies:
     eventemitter3 "^5.0.1"
     lodash.clonedeep "^4.5.0"
@@ -499,9 +499,9 @@ lru-cache@^10.2.0:
   integrity sha512-9hp3Vp2/hFQUiIwKo8XCeFVnrg8Pk3TYNPIR7tJADKi5YfcF7vEaK7avFHTlSy3kOKYaJQaalfEo6YuXdceBOQ==
 
 lru-cache@^10.2.2:
-  version "10.4.0"
-  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.0.tgz#cb29b4b2dd55b22e4a729cdb096093d7f85df02d"
-  integrity sha512-bfJaPTuEiTYBu+ulDaeQ0F+uLmlfFkMgXj4cbwfuMSjgObGMzb55FMMbDvbRU0fAHZ4sLGkz2mKwcMg8Dvm8Ww==
+  version "10.4.3"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.4.3.tgz#410fc8a17b70e598013df257c2446b7f3383f119"
+  integrity sha512-JNAzZcXrCt42VGLuYz0zfAzDfAvJWW6AfYlDBQyDV5DClI2m5sAmK+OIO7s59XfsRsWHp02jAJrRadPRGTt6SQ==
 
 make-dir@^4.0.0:
   version "4.0.0"

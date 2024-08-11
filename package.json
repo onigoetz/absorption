@@ -36,5 +36,6 @@
     "check": "biome check src",
     "test": "TZ=Europe/Zurich c8 node --test  __tests__/*.js",
     "test:ci": "TZ=Europe/Zurich c8 -r lcov -r text node --test  __tests__/*.js"
-  }
+  },
+  "packageManager": "yarn@4.4.0"
 }

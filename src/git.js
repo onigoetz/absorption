@@ -26,9 +26,9 @@ export async function getBlame(execa, cwd, file, ref = "master") {
     const m = hashRegex.exec(line);
     if (m) {
       currentHash = m[1];
-      const numLines = parseInt(m[4], 10);
+      const numLines = Number.parseInt(m[4], 10);
 
-      if (!hashes.hasOwnProperty(currentHash)) {
+      if (!Object.hasOwn(hashes, currentHash)) {
         hashes[currentHash] = {
           numLines: 0,
           author: "",
@@ -52,12 +52,12 @@ export async function getBlame(execa, cwd, file, ref = "master") {
   const mapped = Object.values(hashes).reduce((acc, current) => {
     const date = getBeginningOfMonth(current.time * 1000);
     const dateKey = `${date.getTime()}`;
-    if (!acc.hasOwnProperty(dateKey)) {
+    if (!Object.hasOwn(acc, dateKey)) {
       acc[dateKey] = {};
     }
 
     const authorKey = `${current.author} ${current.mail}`;
-    if (!acc[dateKey].hasOwnProperty(authorKey)) {
+    if (!Object.hasOwn(acc[dateKey], authorKey)) {
       acc[dateKey][authorKey] = 0;
     }
 

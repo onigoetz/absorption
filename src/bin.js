@@ -1,20 +1,20 @@
 #!/usr/bin/env node
-import fs from "fs";
+import fs from "node:fs";
+import colors from "colors/safe.js";
+import hardRejection from "hard-rejection";
+import { table } from "table";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import hardRejection from "hard-rejection";
-import colors from "colors/safe.js";
-import { table } from "table";
 
-import {
-  transformThreshold,
-  loadFile,
-  filePath,
-  prepareWeights,
-  sortByLinesDesc,
-} from "./utils.js";
 import { listFiles } from "./git.js";
 import calculate from "./index.js";
+import {
+  filePath,
+  loadFile,
+  prepareWeights,
+  sortByLinesDesc,
+  transformThreshold,
+} from "./utils.js";
 
 hardRejection();
 
@@ -23,13 +23,13 @@ process.title = "absorption";
 function renderTable(header, columns, rows) {
   const options = {
     border: {
-      bodyLeft: ``,
-      bodyRight: ``,
-      bodyJoin: colors.gray(`│`),
-      joinBody: colors.gray(`─`),
-      joinLeft: ``,
-      joinRight: ``,
-      joinJoin: colors.gray(`┼`),
+      bodyLeft: "",
+      bodyRight: "",
+      bodyJoin: colors.gray("│"),
+      joinBody: colors.gray("─"),
+      joinLeft: "",
+      joinRight: "",
+      joinJoin: colors.gray("┼"),
     },
     drawHorizontalLine(index) {
       return index === 1;
@@ -196,7 +196,7 @@ yargs(hideBin(process.argv))
 
       if (argv.json) {
         if (!verbose) {
-          delete result.fileData;
+          const { fileData, ...result } = result;
         }
 
         const output = filePath(argv.json);

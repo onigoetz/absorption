@@ -1,6 +1,6 @@
-import path from "path";
+import fs from "node:fs";
+import path from "node:path";
 import mm from "micromatch";
-import fs from "fs";
 
 /**
  * @param chunkIterable An asynchronous or synchronous iterable
@@ -54,7 +54,7 @@ export function getDuration(threshold) {
     );
   }
 
-  return oneDay * parseInt(m[1], 10) * thresholdMultipliers[m[2]];
+  return oneDay * Number.parseInt(m[1], 10) * thresholdMultipliers[m[2]];
 }
 
 export function transformThreshold(threshold) {
@@ -103,7 +103,7 @@ const lockfilePatterns = [
 export function prepareWeights(weights, withMedia, withLockfiles) {
   if (!withMedia) {
     for (const pattern of mediaPatterns) {
-      if (!weights.hasOwnProperty(pattern)) {
+      if (!Object.hasOwn(weights, pattern)) {
         weights[pattern] = 0;
       }
     }
@@ -111,7 +111,7 @@ export function prepareWeights(weights, withMedia, withLockfiles) {
 
   if (!withLockfiles) {
     for (const pattern of lockfilePatterns) {
-      if (!weights.hasOwnProperty(pattern)) {
+      if (!Object.hasOwn(weights, pattern)) {
         weights[pattern] = 0;
       }
     }
@@ -132,11 +132,12 @@ export function sortByLinesDesc(elements) {
   elements.sort((a, b) => {
     if (a.lines < b.lines) {
       return 1;
-    } else if (a.lines > b.lines) {
-      return -1;
-    } else {
-      return 0;
     }
+    if (a.lines > b.lines) {
+      return -1;
+    }
+
+    return 0;
   });
 
   return elements;

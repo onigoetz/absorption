@@ -334,11 +334,11 @@ __metadata:
   linkType: hard
 
 "cache-manager@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "cache-manager@npm:6.0.0"
+  version: 6.1.0
+  resolution: "cache-manager@npm:6.1.0"
   dependencies:
     keyv: "npm:^5.0.3"
-  checksum: 10c0/6532ef0e6a9e453b1387ef23072c5a5b193c01d6908e217d805c0c414a2982eacc592caf8c8a2e66facbb42a74ad4c414d4b3458e0af9a631551f74e271d45fe
+  checksum: 10c0/65ad4ca4e9eca97df8689166a992d66f566bdd8d1e2d1136ee1151e59cf95c92c7ed32edc32cfb8062671504d63b694da9f6ee729716463b47f859f3762f76fd
   languageName: node
   linkType: hard
 

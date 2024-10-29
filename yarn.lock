@@ -334,11 +334,11 @@ __metadata:
   linkType: hard
 
 "cache-manager@npm:^6.0.0":
-  version: 6.1.1
-  resolution: "cache-manager@npm:6.1.1"
+  version: 6.1.2
+  resolution: "cache-manager@npm:6.1.2"
   dependencies:
-    keyv: "npm:^5.1.0"
-  checksum: 10c0/f12414c399e95fd40b24b59942e060e57101d8a926af3d9c459e287df36ca2cad9dc4ba288ec611a152cae5b148f7cadd01a8622f2025983727975b32f119765
+    keyv: "npm:^5.1.2"
+  checksum: 10c0/247a3af2fb32aa04404c64682ec46af5e51316f3aebbefcdacd591f256ea0707e469ad5f6970dd7154cb64941dd6e36e73d5d9e825a95305a3334d07fdd31093
   languageName: node
   linkType: hard
 
@@ -446,8 +446,8 @@ __metadata:
   linkType: hard
 
 "execa@npm:^9.0.0":
-  version: 9.4.1
-  resolution: "execa@npm:9.4.1"
+  version: 9.5.1
+  resolution: "execa@npm:9.5.1"
   dependencies:
     "@sindresorhus/merge-streams": "npm:^4.0.0"
     cross-spawn: "npm:^7.0.3"
@@ -461,7 +461,7 @@ __metadata:
     signal-exit: "npm:^4.1.0"
     strip-final-newline: "npm:^4.0.0"
     yoctocolors: "npm:^2.0.0"
-  checksum: 10c0/2166de02c8c940312481e480ef47f54636725b24a402d25bdbaeca97f6eeb82b21def1279e00378872fbe6a0c675d6b5cd144be4d52c1485a7a3895e611ac03e
+  checksum: 10c0/1a628d535c5a088f9e17a735bb3143efc4198095392b319ba877b2975d5c3c57724536dccb6f68f1cd9b3af331c5a9e8c1aeb338d52ab316b1e008ff453374a7
   languageName: node
   linkType: hard
 
@@ -695,12 +695,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keyv@npm:^5.1.0":
-  version: 5.1.0
-  resolution: "keyv@npm:5.1.0"
+"keyv@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "keyv@npm:5.1.2"
   dependencies:
     "@keyv/serialize": "npm:*"
-  checksum: 10c0/9c6088e7c2f0d016f69d661e11b0f7b2a520a1510ae362a511cb61b245402c7af11f1df1a6b9792e538f8aa452e86b7b724588e307e48422741eac52cd526ead
+  checksum: 10c0/0b848e2e867352db24be2c963a9ae50e883388a6d0e6aa7bdd75baae7e6d1f4e7f31403cf36b863acdac51a4b78ad959a8c8c1a025cbdc68b96c4f7fb11e8120
   languageName: node
   linkType: hard
 

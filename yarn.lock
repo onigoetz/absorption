@@ -334,11 +334,11 @@ __metadata:
   linkType: hard
 
 "cache-manager@npm:^6.0.0":
-  version: 6.3.2
-  resolution: "cache-manager@npm:6.3.2"
+  version: 6.4.0
+  resolution: "cache-manager@npm:6.4.0"
   dependencies:
     keyv: "npm:^5.2.3"
-  checksum: 10c0/86d17158b87110ea60b86cfd2aea986a7c72f60a2168a458b5234b21b2c0ff959ec14728b3af793d762c920e3432099ee92626782413509b218a24bf9a826483
+  checksum: 10c0/e0029fe7624b477bc85c48ec0bae6aed66222281e4c44f6b198127140611726e77a32b41e8526824deb9763586a0758e69b185b8b9a8eb484cff27698eae77b8
   languageName: node
   linkType: hard
 
@@ -827,12 +827,12 @@ __metadata:
   linkType: hard
 
 "p-queue@npm:^8.0.0":
-  version: 8.0.1
-  resolution: "p-queue@npm:8.0.1"
+  version: 8.1.0
+  resolution: "p-queue@npm:8.1.0"
   dependencies:
     eventemitter3: "npm:^5.0.1"
     p-timeout: "npm:^6.1.2"
-  checksum: 10c0/fe185bc8bbd32d17a5f6dba090077b1bb326b008b4ec9b0646c57a32a6984035aa8ece909a6d0de7f6c4640296dc288197f430e7394cdc76a26d862339494616
+  checksum: 10c0/6bdea170840546769c29682fed212745c951933476761ed3a981967fab624c7c0120dff79bd99a1ac8b650b420719a245813e944af4b8ee77d4dd78adbf5fe75
   languageName: node
   linkType: hard
 

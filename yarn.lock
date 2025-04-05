@@ -334,11 +334,11 @@ __metadata:
   linkType: hard
 
 "cache-manager@npm:^6.0.0":
-  version: 6.4.1
-  resolution: "cache-manager@npm:6.4.1"
+  version: 6.4.2
+  resolution: "cache-manager@npm:6.4.2"
   dependencies:
-    keyv: "npm:^5.3.1"
-  checksum: 10c0/abed9b208ae466117b6cd5b943b68701da0d3894b13500e6579473f501158840d42d20334ece3bd2e692755ad0fb98897b203e92d6f73046b346d48ce077d223
+    keyv: "npm:^5.3.2"
+  checksum: 10c0/18f65665a15b890d150976c1c320134b21629343cad553d7e3c89f3d395c535617da005383fb4429d71a1a03924208549d10d92d63a7062a8562326ce597e85b
   languageName: node
   linkType: hard
 
@@ -695,12 +695,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keyv@npm:^5.3.1":
-  version: 5.3.1
-  resolution: "keyv@npm:5.3.1"
+"keyv@npm:^5.3.2":
+  version: 5.3.2
+  resolution: "keyv@npm:5.3.2"
   dependencies:
     "@keyv/serialize": "npm:^1.0.3"
-  checksum: 10c0/d5ffe3d2d547a50a5e1189d5acbc0480821c22c025082851a8eeb26667d789f3f7b7ee7beb933660d98c239f7e7c403c652a511693670a78a73f06cd411e04fa
+  checksum: 10c0/293ebd052e7889685b8b770b7b4c9047aaafd821f5446b5b5ffa1cc6e9b830ee752f7b2d108bd96e1277c644c89f02a39e09c45159a6cb87663e183c4405989a
   languageName: node
   linkType: hard
 

@@ -196,7 +196,7 @@ __metadata:
     cli-progress: "npm:^3.6.0"
     colors: "npm:^1.4.0"
     execa: "npm:^9.0.0"
-    find-cache-dir: "npm:^5.0.0"
+    find-cache-dir: "npm:^6.0.0"
     hard-rejection: "npm:^2.1.0"
     micromatch: "npm:^4.0.2"
     p-queue: "npm:^8.0.0"
@@ -497,13 +497,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"find-cache-dir@npm:^5.0.0":
-  version: 5.0.0
-  resolution: "find-cache-dir@npm:5.0.0"
+"find-cache-dir@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "find-cache-dir@npm:6.0.0"
   dependencies:
     common-path-prefix: "npm:^3.0.0"
     pkg-dir: "npm:^7.0.0"
-  checksum: 10c0/e6403b35aaf862898aefadbe3ee27246583a69adcef21cd79b9262be407d1ac85b21a7e1c1d41712eae39c6d8a8ac297fd78123b5b7aea13f0f046744aa02453
+  checksum: 10c0/0d367fb9773c9b3e30387ea7081830fefc16808ec8e967ff7eb4335adbab6041e472add18498a7be8d3738b00d9ed529d492f427f77e2ec873b3d79accc842b4
   languageName: node
   linkType: hard
 

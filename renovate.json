@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base", "group:allNonMajor"],
+  "extends": ["config:base", "group:allNonMajor", ":automergeMinor"],
   "schedule": "before 11pm on Monday",
   "packageRules": [
     {

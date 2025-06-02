@@ -399,7 +399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-spawn@npm:^7.0.0, cross-spawn@npm:^7.0.3":
+"cross-spawn@npm:^7.0.0":
   version: 7.0.3
   resolution: "cross-spawn@npm:7.0.3"
   dependencies:
@@ -407,6 +407,17 @@ __metadata:
     shebang-command: "npm:^2.0.0"
     which: "npm:^2.0.1"
   checksum: 10c0/5738c312387081c98d69c98e105b6327b069197f864a60593245d64c8089c8a0a744e16349281210d56835bb9274130d825a78b2ad6853ca13cfbeffc0c31750
+  languageName: node
+  linkType: hard
+
+"cross-spawn@npm:^7.0.6":
+  version: 7.0.6
+  resolution: "cross-spawn@npm:7.0.6"
+  dependencies:
+    path-key: "npm:^3.1.0"
+    shebang-command: "npm:^2.0.0"
+    which: "npm:^2.0.1"
+  checksum: 10c0/053ea8b2135caff68a9e81470e845613e374e7309a47731e81639de3eaeb90c3d01af0e0b44d2ab9d50b43467223b88567dfeb3262db942dc063b9976718ffc1
   languageName: node
   linkType: hard
 
@@ -446,22 +457,22 @@ __metadata:
   linkType: hard
 
 "execa@npm:^9.0.0":
-  version: 9.5.3
-  resolution: "execa@npm:9.5.3"
+  version: 9.6.0
+  resolution: "execa@npm:9.6.0"
   dependencies:
     "@sindresorhus/merge-streams": "npm:^4.0.0"
-    cross-spawn: "npm:^7.0.3"
+    cross-spawn: "npm:^7.0.6"
     figures: "npm:^6.1.0"
     get-stream: "npm:^9.0.0"
-    human-signals: "npm:^8.0.0"
+    human-signals: "npm:^8.0.1"
     is-plain-obj: "npm:^4.1.0"
     is-stream: "npm:^4.0.1"
     npm-run-path: "npm:^6.0.0"
-    pretty-ms: "npm:^9.0.0"
+    pretty-ms: "npm:^9.2.0"
     signal-exit: "npm:^4.1.0"
     strip-final-newline: "npm:^4.0.0"
-    yoctocolors: "npm:^2.0.0"
-  checksum: 10c0/f39b38b960cfd68a69e73f19f74e6b5a15b43f913130c89e96d4c9377c6baa18243033bc5087003e25e6f67916dc5f37fc7cd3b940dfe699c30be5d17ba5fa1e
+    yoctocolors: "npm:^2.1.1"
+  checksum: 10c0/2c44a33142f77d3a6a590a3b769b49b27029a76768593bac1f26fed4dd1330e9c189ee61eba6a8c990fb77e37286c68c7445472ebf24c22b31e9ff320e73d7ac
   languageName: node
   linkType: hard
 
@@ -591,10 +602,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"human-signals@npm:^8.0.0":
-  version: 8.0.0
-  resolution: "human-signals@npm:8.0.0"
-  checksum: 10c0/e4dac4f7d3eb791ed04129fc6a85bd454a9102d3e3b76c911d0db7057ebd60b2956b435b5b5712aec18960488ede3c21ef7c56e42cdd70760c0d84d3c05cd92e
+"human-signals@npm:^8.0.1":
+  version: 8.0.1
+  resolution: "human-signals@npm:8.0.1"
+  checksum: 10c0/195ac607108c56253757717242e17cd2e21b29f06c5d2dad362e86c672bf2d096e8a3bbb2601841c376c2301c4ae7cff129e87f740aa4ebff1390c163114c7c4
   languageName: node
   linkType: hard
 
@@ -911,12 +922,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-ms@npm:^9.0.0":
-  version: 9.1.0
-  resolution: "pretty-ms@npm:9.1.0"
+"pretty-ms@npm:^9.2.0":
+  version: 9.2.0
+  resolution: "pretty-ms@npm:9.2.0"
   dependencies:
     parse-ms: "npm:^4.0.0"
-  checksum: 10c0/fd111aad8800a04dfd654e6016da69bdaa6fc6a4c280f8e727cffd8b5960558e94942f1a94d4aa6e4d179561a0fbb0366a9ebe0ccefbbb0f8ff853b129cdefb9
+  checksum: 10c0/ab6d066f90e9f77020426986e1b018369f41575674544c539aabec2e63a20fec01166d8cf6571d0e165ad11cfe5a8134a2a48a36d42ab291c59c6deca5264cbb
   languageName: node
   linkType: hard
 
@@ -1167,7 +1178,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yoctocolors@npm:^2.0.0":
+"yoctocolors@npm:^2.1.1":
   version: 2.1.1
   resolution: "yoctocolors@npm:2.1.1"
   checksum: 10c0/85903f7fa96f1c70badee94789fade709f9d83dab2ec92753d612d84fcea6d34c772337a9f8914c6bed2f5fc03a428ac5d893e76fab636da5f1236ab725486d0

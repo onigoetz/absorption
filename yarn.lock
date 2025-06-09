@@ -191,7 +191,7 @@ __metadata:
   dependencies:
     "@biomejs/biome": "npm:1.9.4"
     c8: "npm:^10.0.0"
-    cache-manager: "npm:^6.0.0"
+    cache-manager: "npm:^7.0.0"
     cache-manager-fs-hash: "npm:^2.0.0"
     cli-progress: "npm:^3.6.0"
     colors: "npm:^1.4.0"
@@ -333,12 +333,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cache-manager@npm:^6.0.0":
-  version: 6.4.3
-  resolution: "cache-manager@npm:6.4.3"
+"cache-manager@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "cache-manager@npm:7.0.0"
   dependencies:
     keyv: "npm:^5.3.3"
-  checksum: 10c0/eb5af37e2206cf01390bf61ddd86d3cb86f281700a2621393835ac4f9bdd5872a618765f643fce76d1cbb56f512a13cef502665fb6259be9c16d5121c713a1f7
+  checksum: 10c0/367349346efebaf19ceaa07de14007d6914da25728dec65fe7d8f09cbf900142ed07d7bc29033678bd819e8f8416e8ac3a41022596bc2ff80e39c183d7278d41
   languageName: node
   linkType: hard
 

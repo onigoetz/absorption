@@ -160,7 +160,7 @@ yargs(hideBin(process.argv))
 
       await listFiles(
         repository,
-        (filename, hash) => {
+        (filename, _hash) => {
           console.log(` ${filename} ${getWeight(filename)}`);
         },
         branch,

@@ -58,8 +58,7 @@ export function getDuration(threshold) {
 }
 
 export function transformThreshold(threshold) {
-  const now = new Date().getTime();
-  return now - getDuration(threshold);
+  return Date.now() - getDuration(threshold);
 }
 
 export function filePath(file) {

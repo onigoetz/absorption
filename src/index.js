@@ -53,7 +53,7 @@ function getLevelAfter(contributorByName, who) {
   return "fresh";
 }
 
-function computeAbsorption(threshold, contributors, data, verbose) {
+function computeAbsorption(threshold, contributors, data) {
   // First we categorize in before / after the threshold
   const before = {};
   const after = {};
@@ -258,7 +258,6 @@ export default async function main(
     threshold,
     contributors,
     data,
-    verbose,
   );
 
   const totalLines = fresh.total + fading.total + lost.total;

@@ -12,18 +12,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/biome@npm:2.0.5"
+"@biomejs/biome@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/biome@npm:2.0.6"
   dependencies:
-    "@biomejs/cli-darwin-arm64": "npm:2.0.5"
-    "@biomejs/cli-darwin-x64": "npm:2.0.5"
-    "@biomejs/cli-linux-arm64": "npm:2.0.5"
-    "@biomejs/cli-linux-arm64-musl": "npm:2.0.5"
-    "@biomejs/cli-linux-x64": "npm:2.0.5"
-    "@biomejs/cli-linux-x64-musl": "npm:2.0.5"
-    "@biomejs/cli-win32-arm64": "npm:2.0.5"
-    "@biomejs/cli-win32-x64": "npm:2.0.5"
+    "@biomejs/cli-darwin-arm64": "npm:2.0.6"
+    "@biomejs/cli-darwin-x64": "npm:2.0.6"
+    "@biomejs/cli-linux-arm64": "npm:2.0.6"
+    "@biomejs/cli-linux-arm64-musl": "npm:2.0.6"
+    "@biomejs/cli-linux-x64": "npm:2.0.6"
+    "@biomejs/cli-linux-x64-musl": "npm:2.0.6"
+    "@biomejs/cli-win32-arm64": "npm:2.0.6"
+    "@biomejs/cli-win32-x64": "npm:2.0.6"
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -43,62 +43,62 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 10c0/850b5bbcdf4f4d964c25785f2eb8121657873acd57bc4d943663a402faf74f6c2c2be3e8d3c6cd4b67a0d63211980c35ebcde7ecd3e7b86866f32234bde80fd1
+  checksum: 10c0/eafaf3981580314c08085542152396f3417637d08d7b8aaee6a5173a978435d7688b1b6b547096e3a9d3573f03cfe526f7342dd341143c322c03d545df126f18
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/cli-darwin-arm64@npm:2.0.5"
+"@biomejs/cli-darwin-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/cli-darwin-arm64@npm:2.0.6"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/cli-darwin-x64@npm:2.0.5"
+"@biomejs/cli-darwin-x64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/cli-darwin-x64@npm:2.0.6"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64-musl@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.0.5"
+"@biomejs/cli-linux-arm64-musl@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.0.6"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/cli-linux-arm64@npm:2.0.5"
+"@biomejs/cli-linux-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/cli-linux-arm64@npm:2.0.6"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64-musl@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/cli-linux-x64-musl@npm:2.0.5"
+"@biomejs/cli-linux-x64-musl@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/cli-linux-x64-musl@npm:2.0.6"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/cli-linux-x64@npm:2.0.5"
+"@biomejs/cli-linux-x64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/cli-linux-x64@npm:2.0.6"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/cli-win32-arm64@npm:2.0.5"
+"@biomejs/cli-win32-arm64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/cli-win32-arm64@npm:2.0.6"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@biomejs/cli-win32-x64@npm:2.0.5"
+"@biomejs/cli-win32-x64@npm:2.0.6":
+  version: 2.0.6
+  resolution: "@biomejs/cli-win32-x64@npm:2.0.6"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -189,7 +189,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "absorption@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:2.0.5"
+    "@biomejs/biome": "npm:2.0.6"
     c8: "npm:^10.0.0"
     cache-manager: "npm:^7.0.0"
     cache-manager-fs-hash: "npm:^2.0.0"
@@ -334,11 +334,11 @@ __metadata:
   linkType: hard
 
 "cache-manager@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "cache-manager@npm:7.0.0"
+  version: 7.0.1
+  resolution: "cache-manager@npm:7.0.1"
   dependencies:
-    keyv: "npm:^5.3.3"
-  checksum: 10c0/367349346efebaf19ceaa07de14007d6914da25728dec65fe7d8f09cbf900142ed07d7bc29033678bd819e8f8416e8ac3a41022596bc2ff80e39c183d7278d41
+    keyv: "npm:^5.3.4"
+  checksum: 10c0/c4d3cf1b9c6cc7f9a046053a1797edea1a34b5fc545f889d31994133d95953a6100e6163b34a1caa0a4754f08cdaafaebddc718c46c84f3ba1b205450473aace
   languageName: node
   linkType: hard
 
@@ -731,12 +731,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keyv@npm:^5.3.3":
-  version: 5.3.3
-  resolution: "keyv@npm:5.3.3"
+"keyv@npm:^5.3.4":
+  version: 5.3.4
+  resolution: "keyv@npm:5.3.4"
   dependencies:
     "@keyv/serialize": "npm:^1.0.3"
-  checksum: 10c0/6b9064d061784e80a5dc500453b03cacb099f06fddd0346063519371d563a66771237e04467f3387b60d8a33a3c99864288991274921fb1338c6adf638574924
+  checksum: 10c0/d6f62dceca7361986d800943749ad41e907cf87676aa4c259ffe09379a46c6606f532513744db0479a61f0732c12eaf5cd2dfc39427fad4db0d7e4955627c503
   languageName: node
   linkType: hard
 

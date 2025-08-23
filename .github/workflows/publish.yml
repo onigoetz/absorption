@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
     - uses: actions/setup-node@v4.4.0
       with:
-        node-version: '18.x'
+        node-version: '22.x'
         # required for credentials to be taken in account
         registry-url: 'https://registry.npmjs.org'
     - name: Install latest npm

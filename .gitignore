@@ -3,3 +3,4 @@ coverage
 
 .yarn/cache
 .yarn/*.gz
+.vscode

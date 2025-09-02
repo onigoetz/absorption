@@ -10,7 +10,7 @@ export async function getRemoteOrigin(execa, cwd) {
 }
 
 function getFiles(execa, cwd, ref) {
-  return execa("git", ["ls-tree", "-r", ref], { cwd });
+  return execa("git", ["ls-tree", "-r", "-z", ref], { cwd });
 }
 
 function runBlame(execa, cwd, file, ref) {
@@ -22,7 +22,7 @@ export async function getBlame(execa, cwd, file, ref = "master") {
 
   const hashes = {};
   let currentHash;
-  for await (const line of chunksToLines(running.stdout)) {
+  for await (const line of chunksToLines(running.stdout, "\n")) {
     const m = hashRegex.exec(line);
     if (m) {
       currentHash = m[1];
@@ -74,11 +74,11 @@ export async function getBlame(execa, cwd, file, ref = "master") {
 export async function listFiles(execa, repository, onFile, ref = "master") {
   const running = getFiles(execa, repository, ref);
 
-  for await (const line of chunksToLines(running.stdout)) {
-    const separated = line.split(/\t/);
+  for await (const line of chunksToLines(running.stdout, "\0")) {
     const type = line.slice(7, 11);
 
     if (type === "blob") {
+      const separated = line.split(/\t/);
       const filename = separated[1].slice(0, -1);
       const hash = separated[0].slice(-40);
       onFile(filename, hash);

@@ -8,12 +8,12 @@ import mm from "micromatch";
  * @returns An asynchronous iterable over “lines”
  * (strings with at most one newline that always appears at the end)
  */
-export async function* chunksToLines(chunkIterable) {
+export async function* chunksToLines(chunkIterable, separator) {
   let previous = "";
   for await (const chunk of chunkIterable) {
     previous += chunk;
     while (true) {
-      const eolIndex = previous.indexOf("\n");
+      const eolIndex = previous.indexOf(separator);
       if (eolIndex < 0) {
         break;
       }

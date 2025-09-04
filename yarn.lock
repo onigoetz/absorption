@@ -191,13 +191,13 @@ __metadata:
     c8: "npm:^10.0.0"
     cache-manager: "npm:^7.0.0"
     cache-manager-fs-hash: "npm:^2.0.0"
-    cli-progress: "npm:^3.6.0"
     colors: "npm:^1.4.0"
     execa: "npm:^9.0.0"
     find-cache-dir: "npm:^6.0.0"
     hard-rejection: "npm:^2.1.0"
     micromatch: "npm:^4.0.2"
     p-queue: "npm:^8.0.0"
+    progress: "npm:^2.0.3"
     table: "npm:^6.0.0"
     yargs: "npm:^18.0.0"
   bin:
@@ -320,15 +320,6 @@ __metadata:
   dependencies:
     keyv: "npm:^5.5.0"
   checksum: 10c0/2abb52b9c827e642ddeaa512530048be5523f978e1b7326ece3e25e2e01c362c2c332ff72878eb06daf71bd5598e87f9400b5c6dfdfc313d967dd098d1392bea
-  languageName: node
-  linkType: hard
-
-"cli-progress@npm:^3.6.0":
-  version: 3.12.0
-  resolution: "cli-progress@npm:3.12.0"
-  dependencies:
-    string-width: "npm:^4.2.3"
-  checksum: 10c0/f464cb19ebde2f3880620a2adfaeeefaec6cb15c8e610c8a659ca1047ee90d69f3bf2fdabbb1fe33ac408678e882e3e0eecdb84ab5df0edf930b269b8a72682d
   languageName: node
   linkType: hard
 
@@ -927,6 +918,13 @@ __metadata:
   dependencies:
     parse-ms: "npm:^4.0.0"
   checksum: 10c0/ab6d066f90e9f77020426986e1b018369f41575674544c539aabec2e63a20fec01166d8cf6571d0e165ad11cfe5a8134a2a48a36d42ab291c59c6deca5264cbb
+  languageName: node
+  linkType: hard
+
+"progress@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "progress@npm:2.0.3"
+  checksum: 10c0/1697e07cb1068055dbe9fe858d242368ff5d2073639e652b75a7eb1f2a1a8d4afd404d719de23c7b48481a6aa0040686310e2dac2f53d776daa2176d3f96369c
   languageName: node
   linkType: hard
 

@@ -17,13 +17,13 @@
   "dependencies": {
     "cache-manager": "^7.0.0",
     "cache-manager-fs-hash": "^2.0.0",
-    "cli-progress": "^3.6.0",
     "colors": "^1.4.0",
     "execa": "^9.0.0",
     "find-cache-dir": "^6.0.0",
     "hard-rejection": "^2.1.0",
     "micromatch": "^4.0.2",
     "p-queue": "^8.0.0",
+    "progress": "^2.0.3",
     "table": "^6.0.0",
     "yargs": "^18.0.0"
   },

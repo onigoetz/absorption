@@ -1,5 +1,5 @@
 import { cpus } from "node:os";
-import cliProgress from "cli-progress";
+import ProgressBar from "progress";
 import { execa } from "execa";
 import Queue from "p-queue";
 import cacheInstance from "./cache.js";
@@ -188,22 +188,17 @@ export default async function main(
     },
   };
   if (!verbose) {
-    progress = new cliProgress.SingleBar({
-      format: "Scanning {bar} | {percentage}% | {value}/{total} files",
-      barCompleteChar: "\u2588",
-      barIncompleteChar: "\u2591",
+    progress = new ProgressBar("Scanning :bar | :percent | :current/:total files", {
+      total: 1,
+      width: 30
     });
 
     queue.on("add", () => {
-      if (queueMaxSize === 0) {
-        progress.start(1, 0);
-      }
-
       queueMaxSize++;
-      progress.setTotal(queueMaxSize);
+      progress.total = queueMaxSize;
     });
     queue.on("next", () => {
-      progress.increment();
+      progress.tick();
     });
   }
 
@@ -252,7 +247,6 @@ export default async function main(
   );
 
   await queue.onIdle();
-  progress.stop();
 
   const { fresh, fading, lost } = computeAbsorption(
     threshold,

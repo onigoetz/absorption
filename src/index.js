@@ -188,10 +188,13 @@ export default async function main(
     },
   };
   if (!verbose) {
-    progress = new ProgressBar("Scanning :bar | :percent | :current/:total files", {
-      total: 1,
-      width: 30
-    });
+    progress = new ProgressBar(
+      "Scanning :bar | :percent | :current/:total files",
+      {
+        total: 1,
+        width: 30,
+      },
+    );
 
     queue.on("add", () => {
       queueMaxSize++;

@@ -1,7 +1,7 @@
 import { cpus } from "node:os";
-import ProgressBar from "progress";
 import { execa } from "execa";
 import Queue from "p-queue";
+import ProgressBar from "progress";
 import cacheInstance from "./cache.js";
 import { getBlame, getRemoteOrigin, listFiles } from "./git.js";
 import { sortByLinesDesc } from "./utils.js";

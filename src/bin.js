@@ -196,7 +196,7 @@ yargs(hideBin(process.argv))
 
       if (argv.json) {
         if (!verbose) {
-          const { fileData, ...result } = result;
+          delete result.fileData;
         }
 
         const output = filePath(argv.json);

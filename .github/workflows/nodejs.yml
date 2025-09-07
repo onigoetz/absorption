@@ -17,10 +17,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v5
-      with:
-        fetch-depth: 0
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v4.4.0
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install
@@ -29,7 +27,3 @@ jobs:
     - run: yarn test:ci
       env:
         CI: true
-    - name: SonarCloud Scan
-      uses: SonarSource/sonarqube-scan-action@v5
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

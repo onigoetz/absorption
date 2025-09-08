@@ -190,7 +190,7 @@ __metadata:
     "@biomejs/biome": "npm:2.2.3"
     c8: "npm:^10.0.0"
     cache-manager: "npm:^7.0.0"
-    cache-manager-fs-hash: "npm:^2.0.0"
+    cache-manager-fs-hash: "npm:^3.0.0"
     colors: "npm:^1.4.0"
     execa: "npm:^9.0.0"
     find-cache-dir: "npm:^6.0.0"
@@ -305,12 +305,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cache-manager-fs-hash@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "cache-manager-fs-hash@npm:2.0.0"
+"cache-manager-fs-hash@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "cache-manager-fs-hash@npm:3.0.0"
   dependencies:
     lockfile: "npm:^1.0.4"
-  checksum: 10c0/fce7033cd58cef807bb57cc3f50988b6f196fb0c3b0c9bb018172e903eb9e064acd8ef4df9479dc6e8616660e9294106cf5d5134b5ded8288d7f4a7f3f8f3987
+  checksum: 10c0/68d2264f1706888de25369e0d568da2c397361338751ce7d418e1667454a2bbd5643f764d862b755453e1a40571add02da2a04d7c6ad6e9efa01d15351a6b0fa
   languageName: node
   linkType: hard
 

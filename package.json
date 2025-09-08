@@ -28,7 +28,7 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.2.2",
+    "@biomejs/biome": "2.2.3",
     "c8": "^10.0.0"
   },
   "scripts": {
@@ -37,5 +37,5 @@
     "test": "TZ=Europe/Zurich c8 node --test  __tests__/*.js",
     "test:ci": "TZ=Europe/Zurich c8 -r lcov -r text node --test  __tests__/*.js"
   },
-  "packageManager": "yarn@4.9.3"
+  "packageManager": "yarn@4.9.4"
 }

@@ -1,11 +1,7 @@
 {
-  "extends": ["config:base", "group:allNonMajor", ":automergeMinor"],
-  "schedule": "before 11pm on Monday",
-  "packageRules": [
-    {
-      "groupName": "@types",
-      "packagePatterns": ["@types/*"],
-      "rangeStrategy": "update-lockfile"
-    }
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "github>onigoetz/renovate-preset:recommended",
+    ":automergeMinor"
   ]
 }

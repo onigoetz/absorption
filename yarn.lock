@@ -103,6 +103,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cacheable/utils@npm:^2.0.1":
+  version: 2.0.2
+  resolution: "@cacheable/utils@npm:2.0.2"
+  checksum: 10c0/0388a852a0f66814786e9474970dd252bfd5979a99208023c3a9404e68475c0ae8f99233e913ea7f600f09412309ff820a841c3687b1d886db730bd0c8c75438
+  languageName: node
+  linkType: hard
+
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -148,10 +155,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@keyv/serialize@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@keyv/serialize@npm:1.1.0"
-  checksum: 10c0/30e34adf4fff52374c2c531e3ff215eed6414350ee56eebcb98c422feaff171b4900c73082a72399a6bfbc5ce60fbb6f968594110c960521923499146bc68c20
+"@keyv/serialize@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@keyv/serialize@npm:1.1.1"
+  checksum: 10c0/b0008cae4a54400c3abf587b8cc2474c6f528ee58969ce6cf9cb07a04006f80c73c85971d6be6544408318a2bc40108236a19a82aea0a6de95aae49533317374
   languageName: node
   linkType: hard
 
@@ -315,11 +322,12 @@ __metadata:
   linkType: hard
 
 "cache-manager@npm:^7.0.0":
-  version: 7.2.0
-  resolution: "cache-manager@npm:7.2.0"
+  version: 7.2.2
+  resolution: "cache-manager@npm:7.2.2"
   dependencies:
-    keyv: "npm:^5.5.0"
-  checksum: 10c0/c256ee7b3acee6c981ae472f094b50ecb6277f96a079ff8f65c07568d8849a59908e555c683b5535d6eefea4c92bb0152001aeca6b129d6de4931829b6625684
+    "@cacheable/utils": "npm:^2.0.1"
+    keyv: "npm:^5.5.2"
+  checksum: 10c0/0a208acafd3cf865365488bcac967875b76c6bbbd10686731f3fe0fe87f8b0b55387a7db2b6c8f57b0d2e9b6b02c9e613308d68c60a0e46005a835f4cdeb135f
   languageName: node
   linkType: hard
 
@@ -685,12 +693,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keyv@npm:^5.5.0":
-  version: 5.5.0
-  resolution: "keyv@npm:5.5.0"
+"keyv@npm:^5.5.2":
+  version: 5.5.2
+  resolution: "keyv@npm:5.5.2"
   dependencies:
-    "@keyv/serialize": "npm:^1.1.0"
-  checksum: 10c0/2db63fd2abcdf71929f032569673b6edd0de111edb012411658e2589dc5f49793a98aecd56c67fafda3f90a31f32e35555a97f8621040728260c66ad8daeea48
+    "@keyv/serialize": "npm:^1.1.1"
+  checksum: 10c0/b0a224210e8bbc4a5913535aa7cc8552809dc81ad67311cc78a2ccfe5485b82b23b8e28ea3a1202e8352c18dd2a0b12b49cda5bb933958d2dcf88042db54c9d0
   languageName: node
   linkType: hard
 

@@ -103,10 +103,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cacheable/utils@npm:^2.0.1":
-  version: 2.0.2
-  resolution: "@cacheable/utils@npm:2.0.2"
-  checksum: 10c0/0388a852a0f66814786e9474970dd252bfd5979a99208023c3a9404e68475c0ae8f99233e913ea7f600f09412309ff820a841c3687b1d886db730bd0c8c75438
+"@cacheable/utils@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@cacheable/utils@npm:2.0.3"
+  checksum: 10c0/5fc44d0588fdd6f6e82457ebf55ae8801e6c6ace7084b72748c7ebb883432c85245e0d845fad58dc2143fe22afde08b79c5fd38a05fa4f708dfffe1abdf8a46a
   languageName: node
   linkType: hard
 
@@ -322,12 +322,12 @@ __metadata:
   linkType: hard
 
 "cache-manager@npm:^7.0.0":
-  version: 7.2.2
-  resolution: "cache-manager@npm:7.2.2"
+  version: 7.2.3
+  resolution: "cache-manager@npm:7.2.3"
   dependencies:
-    "@cacheable/utils": "npm:^2.0.1"
-    keyv: "npm:^5.5.2"
-  checksum: 10c0/0a208acafd3cf865365488bcac967875b76c6bbbd10686731f3fe0fe87f8b0b55387a7db2b6c8f57b0d2e9b6b02c9e613308d68c60a0e46005a835f4cdeb135f
+    "@cacheable/utils": "npm:^2.0.3"
+    keyv: "npm:^5.5.3"
+  checksum: 10c0/fbf9fdeabc8281b7d6c2495e0e10f4fdbdc7dd720d21d47af016255e59ec7d54dca841828454c8fa080bdd98da9d9b2e5f47e38d343d99c24a8668de68d8bab1
   languageName: node
   linkType: hard
 
@@ -693,12 +693,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"keyv@npm:^5.5.2":
-  version: 5.5.2
-  resolution: "keyv@npm:5.5.2"
+"keyv@npm:^5.5.3":
+  version: 5.5.3
+  resolution: "keyv@npm:5.5.3"
   dependencies:
     "@keyv/serialize": "npm:^1.1.1"
-  checksum: 10c0/b0a224210e8bbc4a5913535aa7cc8552809dc81ad67311cc78a2ccfe5485b82b23b8e28ea3a1202e8352c18dd2a0b12b49cda5bb933958d2dcf88042db54c9d0
+  checksum: 10c0/6890ed8a76e6b16034ceda89a4a7dc9cd1ebd05bf0ee1f7f3d3fe37ac3e4a6196d710ab2fef3d47cf8c394b61104b3bfcab17f23cc6e0dc2dcbe36483a43f84d
   languageName: node
   linkType: hard
 

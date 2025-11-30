@@ -28,7 +28,7 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.7",
+    "@biomejs/biome": "2.3.8",
     "c8": "^10.0.0"
   },
   "scripts": {

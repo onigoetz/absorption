@@ -1,14 +1,13 @@
-import { it, describe, mock } from 'node:test';
-import assert from 'node:assert/strict';
+import { it, describe, expect, rs } from '@rstest/core';
 
 import { Readable } from "node:stream";
 import { getBlame } from "../src/git.js";
 
 let mockData = ``;
 
-const execa = mock.fn()
+const execa = rs.fn()
 
-execa.mock.mockImplementation(() => {
+execa.mockImplementation(() => {
       // Randomly split string to make it more realistic to stream
       const items = [];
       let j = 0;
@@ -497,8 +496,7 @@ describe("getBlame", () => {
 
     const blame = await getBlame(execa, "dir", "src/bin.js");
 
-    assert.deepStrictEqual(
-      blame, 
+    expect(blame).toStrictEqual(
       {
         "1583017200000": {
           "Sergio Mendolia <hidden@github.com>": 15,
@@ -512,13 +510,11 @@ describe("getBlame", () => {
         },
       }
     );
-    
-    assert.deepStrictEqual(execa.mock.calls[0].arguments,
-      [
+
+    expect(execa.mock.calls[0]).toStrictEqual([
       "git",
       ["blame", "--incremental", "src/bin.js", "master"],
       { cwd: "dir" }
-      ]
-    );
+    ]);
   });
 });

@@ -1,5 +1,4 @@
-import { it, describe } from 'node:test';
-import assert from 'node:assert/strict';
+import { it, describe, expect } from '@rstest/core';
 
 import {
   getDuration,
@@ -10,16 +9,16 @@ import {
 
 it("Transform threshold", () => {
   const oneDay = 1000 * 60 * 60 * 24;
-  assert.deepEqual(getDuration("4y"), 4 * 365 * oneDay);
-  assert.deepEqual(getDuration("12m"), 12 * 30 * oneDay);
-  assert.deepEqual(getDuration("16w"), 16 * 7 * oneDay);
-  assert.deepEqual(getDuration("42d"), 42 * oneDay);
-  assert.throws(() => {
+  expect(getDuration("4y")).toEqual(4 * 365 * oneDay);
+  expect(getDuration("12m")).toEqual(12 * 30 * oneDay);
+  expect(getDuration("16w")).toEqual(16 * 7 * oneDay);
+  expect(getDuration("42d")).toEqual(42 * oneDay);
+  expect(() => {
     getDuration("36x");
-  }, /Invalid threshold '36x'./);
-  assert.throws(() => {
+  }).toThrow(/Invalid threshold '36x'./);
+  expect(() => {
     getDuration("xxx");
-  }, /Invalid threshold 'xxx'./);
+  }).toThrow(/Invalid threshold 'xxx'./);
 });
 
 it("Weight", () => {
@@ -33,11 +32,11 @@ it("Weight", () => {
     false
   );
 
-  assert.deepEqual(weight("some/random/file.css"), 1);
-  assert.deepEqual(weight("src/business/some/file.js"), 2);
-  assert.deepEqual(weight("src/__tests__/utils.js"), 0.5);
-  assert.deepEqual(weight("deep/nested/__tests__/utils.js"), 0.5);
-  assert.deepEqual(weight("any/javascript.js"), 1.5);
+  expect(weight("some/random/file.css")).toEqual(1);
+  expect(weight("src/business/some/file.js")).toEqual(2);
+  expect(weight("src/__tests__/utils.js")).toEqual(0.5);
+  expect(weight("deep/nested/__tests__/utils.js")).toEqual(0.5);
+  expect(weight("any/javascript.js")).toEqual(1.5);
 });
 
 it("Weight: Ignore media files", () => {
@@ -47,19 +46,19 @@ it("Weight: Ignore media files", () => {
     false
   );
 
-  assert.deepEqual(weight("some/random/file.css"), 1);
-  assert.deepEqual(weight("src/business/some/file.js"), 1);
-  assert.deepEqual(weight("src/__tests__/utils.js"), 0.5);
-  assert.deepEqual(weight("deep/nested/__tests__/utils.js"), 0.5);
-  assert.deepEqual(weight("any/file.jpg"), 0);
-  assert.deepEqual(weight("any/file.gif"), 2);
-  assert.deepEqual(weight("video.mp4"), 0);
+  expect(weight("some/random/file.css")).toEqual(1);
+  expect(weight("src/business/some/file.js")).toEqual(1);
+  expect(weight("src/__tests__/utils.js")).toEqual(0.5);
+  expect(weight("deep/nested/__tests__/utils.js")).toEqual(0.5);
+  expect(weight("any/file.jpg")).toEqual(0);
+  expect(weight("any/file.gif")).toEqual(2);
+  expect(weight("video.mp4")).toEqual(0);
 });
 
 it("sortByLinesDesc", () => {
   const entry = [{ lines: 22 }, { lines: 340 }, { lines: 340 }, { lines: 4 }];
 
-  assert.deepStrictEqual(sortByLinesDesc(entry), [
+  expect(sortByLinesDesc(entry)).toStrictEqual([
     { lines: 340 },
     { lines: 340 },
     { lines: 22 },
@@ -69,19 +68,19 @@ it("sortByLinesDesc", () => {
 
 describe("loadFile()", () => {
   it("should load JSON", async () => {
-    assert.deepStrictEqual(await loadFile("./__tests__/fixtures/values.json"), {
+    expect(await loadFile("./__tests__/fixtures/values.json")).toStrictEqual({
       something: 4
     });
   });
 
   it("Should load CJS", async () => {
-    assert.deepStrictEqual(await loadFile("./__tests__/fixtures/values.cjs"), {
+    expect(await loadFile("./__tests__/fixtures/values.cjs")).toStrictEqual({
       something: 4
     });
   });
 
   it("Should load MJS", async () => {
-    assert.deepStrictEqual(await loadFile("./__tests__/fixtures/values.mjs"), {
+    expect(await loadFile("./__tests__/fixtures/values.mjs")).toStrictEqual({
       something: 4
     });
   });

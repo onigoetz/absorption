@@ -29,13 +29,14 @@
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.8",
-    "c8": "^10.0.0"
+    "@rstest/core": "^0.9.4",
+    "@rstest/coverage-istanbul": "^0.3.0"
   },
   "scripts": {
     "format": "biome format src",
     "check": "biome check src",
-    "test": "TZ=Europe/Zurich c8 node --test  __tests__/*.js",
-    "test:ci": "TZ=Europe/Zurich c8 -r lcov -r text node --test  __tests__/*.js"
+    "test": "rstest",
+    "test:ci": "rstest --coverage"
   },
   "packageManager": "yarn@4.13.0"
 }

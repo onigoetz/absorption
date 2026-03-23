@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [18.x, 20.x, 22.x]
+        node-version: [20.x, 22.x, 24.x]
 
     runs-on: ${{ matrix.os }}
     permissions:
@@ -30,7 +30,7 @@ jobs:
     - run: yarn format
     - run: yarn test:ci
     - uses: actions/upload-artifact@v6
-      if: matrix.node-version == '22.x'
+      if: matrix.node-version == '24.x'
       with:
         name: reports-${{ matrix.os }}-${{ matrix.node-version }}
         retention-days: 1

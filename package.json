@@ -28,7 +28,7 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.4.8",
+    "@biomejs/biome": "2.4.9",
     "@rstest/core": "^0.9.4",
     "@rstest/coverage-istanbul": "^0.3.0"
   },

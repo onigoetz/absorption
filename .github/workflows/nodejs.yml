@@ -22,14 +22,14 @@ jobs:
       with:
         ref: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.sha || github.sha }}
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v5.0.0
+      uses: actions/setup-node@v6
       with:
         node-version: ${{ matrix.node-version }}
     - run: yarn install
     - run: yarn check
     - run: yarn format
     - run: yarn test:ci
-    - uses: actions/upload-artifact@v6
+    - uses: actions/upload-artifact@v7
       if: matrix.node-version == '24.x'
       with:
         name: reports-${{ matrix.os }}-${{ matrix.node-version }}
@@ -66,7 +66,7 @@ jobs:
         paths=$(find . -name "sonar-report.xml" | tr '\n' ',' | sed 's/,$//')
         echo "paths=$paths" >> $GITHUB_OUTPUT
     - name: SonarCloud Scan
-      uses: SonarSource/sonarqube-scan-action@v6
+      uses: SonarSource/sonarqube-scan-action@v7
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:

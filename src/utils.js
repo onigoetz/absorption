@@ -36,7 +36,7 @@ export function getBeginningOfMonth(time) {
   return new Date(year, month, 1, 0, 0, 0, 0);
 }
 
-const thresholdRegex = /^(\d+)([ymwd]{1})$/;
+const thresholdRegex = /^(\d+)([ymwd])$/;
 const oneDay = 1000 * 60 * 60 * 24;
 const thresholdMultipliers = {
   d: 1,
@@ -69,7 +69,7 @@ export async function loadFile(file) {
   const resolvedPath = filePath(file);
 
   // JSON Files have to be parsed by loading them
-  if (/\.json$/.test(file)) {
+  if (file.endsWith(".json")) {
     return fs.promises
       .readFile(resolvedPath, { encoding: "UTF-8" })
       .then((content) => JSON.parse(content));

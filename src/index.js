@@ -69,7 +69,7 @@ function computeAbsorption(threshold, contributors, data) {
     for (const who of Object.keys(data[key])) {
       let name = who;
       const contributor = contributors.find(
-        (c) => c.identities.indexOf(who) > -1,
+        (c) => c.identities.includes(who),
       );
       if (contributor) {
         // Ignore bots from data

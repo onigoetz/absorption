@@ -5,6 +5,10 @@ export default defineConfig({
     TZ: "Europe/Zurich",
   },
   include: ["__tests__/**/*.js"],
+  reporters: [
+    'default',
+    ['junit', { outputPath: './coverage/TEST-rstest.xml' }]
+  ],
   coverage: {
     reporters: [
       "html",

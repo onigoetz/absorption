@@ -36,7 +36,7 @@ jobs:
         retention-days: 1
         path: |
           **/coverage/lcov.info
-          **/coverage/sonar-report.xml
+          **/coverage/TEST-*.xml
           !node_modules/**
 
   # ─── Job 2: uploads coverage using secrets, does NOT run PR code ─────────

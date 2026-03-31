@@ -30,7 +30,8 @@
   "devDependencies": {
     "@biomejs/biome": "2.4.9",
     "@rstest/core": "^0.9.4",
-    "@rstest/coverage-istanbul": "^0.3.0"
+    "@rstest/coverage-istanbul": "^0.3.0",
+    "rstest-sonar-reporter": "^0.1.0"
   },
   "scripts": {
     "format": "biome format src",

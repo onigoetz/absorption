@@ -1,4 +1,5 @@
 import { defineConfig } from "@rstest/core";
+import { SonarReporter } from "rstest-sonar-reporter";
 
 export default defineConfig({
   env: {
@@ -7,7 +8,7 @@ export default defineConfig({
   include: ["__tests__/**/*.js"],
   reporters: [
     'default',
-    ['junit', { outputPath: './coverage/TEST-rstest.xml' }]
+    new SonarReporter({ outputFile: './coverage/sonar-report.xml'}),
   ],
   coverage: {
     reporters: [

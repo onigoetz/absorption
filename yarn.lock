@@ -422,6 +422,7 @@ __metadata:
     micromatch: "npm:^4.0.2"
     p-queue: "npm:^9.1.0"
     progress: "npm:^2.0.3"
+    rstest-sonar-reporter: "npm:^0.1.0"
     table: "npm:^6.0.0"
     yargs: "npm:^18.0.0"
   bin:
@@ -1002,6 +1003,15 @@ __metadata:
   version: 2.0.2
   resolution: "require-from-string@npm:2.0.2"
   checksum: 10c0/aaa267e0c5b022fc5fd4eef49d8285086b15f2a1c54b28240fdf03599cbd9c26049fee3eab894f2e1f6ca65e513b030a7c264201e3f005601e80c49fb2937ce2
+  languageName: node
+  linkType: hard
+
+"rstest-sonar-reporter@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "rstest-sonar-reporter@npm:0.1.0"
+  peerDependencies:
+    "@rstest/core": ">=0.9.0"
+  checksum: 10c0/99917132077495a08892b9d6444e4474a2b9cb382641724d85d30aed470eddc564ee43f1bca1a35c2d1cd1d2ccb8d6b0d9af6c9a9d2e69bb12ffbacb568c5417
   languageName: node
   linkType: hard
 

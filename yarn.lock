@@ -149,9 +149,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rsbuild/core@npm:2.0.0-rc.1":
-  version: 2.0.0-rc.1
-  resolution: "@rsbuild/core@npm:2.0.0-rc.1"
+"@rsbuild/core@npm:2.0.0-rc.2":
+  version: 2.0.0-rc.2
+  resolution: "@rsbuild/core@npm:2.0.0-rc.2"
   dependencies:
     "@rspack/core": "npm:2.0.0-rc.1"
     "@swc/helpers": "npm:^0.5.21"
@@ -162,7 +162,7 @@ __metadata:
       optional: true
   bin:
     rsbuild: bin/rsbuild.js
-  checksum: 10c0/53cc796c27bb297ac6b9ce89e0222f16d2d231187db0e250443db3821b4f616b1d11d1574d610f787bf22577210add9223ff280f2ee20174240b48448beb3786
+  checksum: 10c0/d492acfd5735b4726eedc1a2442d5495173d4893c9a336f4e206b04b0d6fd5cbe89908e159c0aa7d1e632efa736d91bee966a5a81d6f33106411cfc92d8ffefc
   languageName: node
   linkType: hard
 
@@ -295,10 +295,10 @@ __metadata:
   linkType: hard
 
 "@rstest/core@npm:^0.9.4":
-  version: 0.9.7
-  resolution: "@rstest/core@npm:0.9.7"
+  version: 0.9.8
+  resolution: "@rstest/core@npm:0.9.8"
   dependencies:
-    "@rsbuild/core": "npm:2.0.0-rc.1"
+    "@rsbuild/core": "npm:2.0.0-rc.2"
     "@types/chai": "npm:^5.2.3"
     tinypool: "npm:^2.1.0"
   peerDependencies:
@@ -311,13 +311,13 @@ __metadata:
       optional: true
   bin:
     rstest: bin/rstest.js
-  checksum: 10c0/a7d862c15a91265e90c97d929090e840f054e63d6a179a661e9cb96399574489934bd46822dce9bfa1768b86a03b9e480dde32d9101a910aa21a7860cd8a8f90
+  checksum: 10c0/146bfb806201884260e95d2499668bf3fd8eb8a999feaf59b0d287d30fa386105ca808b0646d6834edf6d2ddac20ee498b8b60371f7c6a8d0fb20667f05d4eb8
   languageName: node
   linkType: hard
 
 "@rstest/coverage-istanbul@npm:^0.3.0":
-  version: 0.3.1
-  resolution: "@rstest/coverage-istanbul@npm:0.3.1"
+  version: 0.3.2
+  resolution: "@rstest/coverage-istanbul@npm:0.3.2"
   dependencies:
     istanbul-lib-coverage: "npm:^3.2.2"
     istanbul-lib-report: "npm:^3.0.1"
@@ -325,8 +325,8 @@ __metadata:
     istanbul-reports: "npm:^3.2.0"
     swc-plugin-coverage-instrument: "npm:0.0.32"
   peerDependencies:
-    "@rstest/core": ~0.9.6
-  checksum: 10c0/7b0e6baba10e03ab4c890118edf096e238193184a24ed3f7c8980a1a7073bcb11153404a605731a6b74da8adc91b8d90e099d40bf59bacc5a691d466447c9294
+    "@rstest/core": ~0.9.8
+  checksum: 10c0/05cb964a978067327e9f51ec8d73ca64b3e4b51d745a90362908af59438a0b554228edebd3b388316f47401af92b14dfd781abb93c50cceb63b9504c044e3c38
   languageName: node
   linkType: hard
 

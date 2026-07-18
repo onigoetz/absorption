@@ -31,7 +31,7 @@
     "@biomejs/biome": "2.5.4",
     "@rstest/core": "^0.11.0",
     "@rstest/coverage-istanbul": "^0.11.0",
-    "rstest-sonar-reporter": "^0.1.0"
+    "rstest-sonar-reporter": "^1.0.0"
   },
   "scripts": {
     "format": "biome format src",

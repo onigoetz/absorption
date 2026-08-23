@@ -177,7 +177,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rsbuild/core@npm:~2.1.11":
+"@rsbuild/core@npm:~2.1.13":
   version: 2.1.13
   resolution: "@rsbuild/core@npm:2.1.13"
   dependencies:
@@ -365,10 +365,10 @@ __metadata:
   linkType: hard
 
 "@rstest/core@npm:^0.11.0":
-  version: 0.11.8
-  resolution: "@rstest/core@npm:0.11.8"
+  version: 0.11.9
+  resolution: "@rstest/core@npm:0.11.9"
   dependencies:
-    "@rsbuild/core": "npm:~2.1.11"
+    "@rsbuild/core": "npm:~2.1.13"
     "@types/chai": "npm:^5.2.3"
   peerDependencies:
     happy-dom: ^20.8.3
@@ -380,13 +380,13 @@ __metadata:
       optional: true
   bin:
     rstest: ./bin/rstest.js
-  checksum: 10c0/89d6ac67d64e47dbe4ba32c7e5db0fd13e72371254a6dd61206d064ce4a4cda931642024621dfb89efb177b94dbde21a1f7de7f88a39d0e80533e0002dae005b
+  checksum: 10c0/bce0308e5eea5db37ef722cdee8a87ea30796d91fb979b708a024ae149b9ba63bcb192a5e4d39b8637ace90044a73dd44372c165a033c0b781450caa8578b073
   languageName: node
   linkType: hard
 
 "@rstest/coverage-istanbul@npm:^0.11.0":
-  version: 0.11.8
-  resolution: "@rstest/coverage-istanbul@npm:0.11.8"
+  version: 0.11.9
+  resolution: "@rstest/coverage-istanbul@npm:0.11.9"
   dependencies:
     istanbul-lib-coverage: "npm:^3.2.2"
     istanbul-lib-report: "npm:^3.0.1"
@@ -395,7 +395,7 @@ __metadata:
     swc-plugin-coverage-instrument: "npm:0.0.32"
   peerDependencies:
     "@rstest/core": ^0.11.0
-  checksum: 10c0/ef7ef64bee587f9b16d887a4adb66bfae40898df3298cc5e413111f663005c6eed632afc90c718daa2fea88830b42d27bff748c11cbed382ae2232d4757ef155
+  checksum: 10c0/998c52e3b9f87be2a992362db91cf7de7fcfa7e270018fcdf9d0e172db27c22ef76ce91c70ace9aa912aba233aed8752f3315bbbbe7bd7e37dd8b1b49c44c80e
   languageName: node
   linkType: hard
 

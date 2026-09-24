@@ -23,4 +23,4 @@ jobs:
     - name: Test
       run: yarn test
     - name: Publish
-      run: npm publish --provenance --access public
+      run: yarn npm publish --provenance --access public

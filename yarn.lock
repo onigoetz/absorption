@@ -1032,11 +1032,11 @@ __metadata:
   linkType: hard
 
 "rstest-sonar-reporter@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "rstest-sonar-reporter@npm:1.0.1"
+  version: 1.0.2
+  resolution: "rstest-sonar-reporter@npm:1.0.2"
   peerDependencies:
     "@rstest/core": ">=0.9.0"
-  checksum: 10c0/d61feb94f2fbbfb4b676c947a9d497b10b23d85a4a9d0609c40f0a49eb5e609750e90360a8297bd6a18108da820f7699618dbfe74b443ca15f33d8492c21eeae
+  checksum: 10c0/d22c0f6d15e78a99af20fafd9900f9665440ea11eba7ca65df96cbf6a08edc1292e1274bb4ecfdcafc5b043b1e534178e46947f0e7185d804eba145153f017d1
   languageName: node
   linkType: hard
 

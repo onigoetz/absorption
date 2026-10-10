@@ -646,8 +646,8 @@ __metadata:
   linkType: hard
 
 "execa@npm:^10.0.0":
-  version: 10.0.1
-  resolution: "execa@npm:10.0.1"
+  version: 10.1.0
+  resolution: "execa@npm:10.1.0"
   dependencies:
     "@sindresorhus/merge-streams": "npm:^4.0.0"
     figures: "npm:^6.1.0"
@@ -656,12 +656,12 @@ __metadata:
     is-plain-obj: "npm:^4.1.0"
     is-stream: "npm:^4.0.1"
     npm-run-path: "npm:^6.0.0"
-    pretty-ms: "npm:^9.3.0"
+    pretty-ms: "npm:^9.3.1"
     signal-exit: "npm:^4.1.0"
     strip-final-newline: "npm:^4.0.0"
     which-command: "npm:^0.1.0"
-    yoctocolors: "npm:^2.1.2"
-  checksum: 10c0/5fc05e35729344d8fdddbc92d91d995cb9cb9080f953cd60367285a7001f1bca9a7deb6f421413a62e6f80d2c2e91af9cda6990b0a88e854cb414506b4b05fce
+    yoctocolors: "npm:^2.2.0"
+  checksum: 10c0/15c7ad5d4a7a17c3b722d8b6566661ee0af7ac5bea6cc9ded9177b50473c536b9eac534087d1125689056fa2cac378f472787496698c4f37c9fb3823a7f9c576
   languageName: node
   linkType: hard
 
@@ -1008,7 +1008,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pretty-ms@npm:^9.3.0":
+"pretty-ms@npm:^9.3.1":
   version: 9.3.1
   resolution: "pretty-ms@npm:9.3.1"
   dependencies:
@@ -1238,7 +1238,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yoctocolors@npm:^2.1.2":
+"yoctocolors@npm:^2.2.0":
   version: 2.2.0
   resolution: "yoctocolors@npm:2.2.0"
   checksum: 10c0/ca179aa83401aa0711f268fda38145a44c828e612a5f5265439efb5796cd63c46ca6b786bae3b74c75440a48518c36b5b23cba7fbb76ea8af5a9f85f830a5754

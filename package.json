@@ -28,7 +28,7 @@
     "yargs": "^18.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.6.8",
+    "@biomejs/biome": "2.6.9",
     "@rstest/core": "^0.12.0",
     "@rstest/coverage-istanbul": "^0.12.0",
     "rstest-sonar-reporter": "^1.0.0"
@@ -39,5 +39,5 @@
     "test": "rstest",
     "test:ci": "rstest --coverage"
   },
-  "packageManager": "yarn@4.18.1"
+  "packageManager": "yarn@4.19.0"
 }
